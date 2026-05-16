@@ -1,0 +1,32 @@
+# BasicEmailInboxFlow
+
+main: kit: flow: BasicEmailInboxFlow:
+{
+  entity: "email_inbox",
+  kind: "basic",
+  name: "BasicEmailInboxFlow",
+  step: [
+    {
+      input: {
+        ref: "email_inbox_ref01",
+        srcdatavar: "email_inbox_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "email_inbox01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_inbox_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailInboxFlow"
+}

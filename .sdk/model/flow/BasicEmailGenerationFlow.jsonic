@@ -1,0 +1,28 @@
+# BasicEmailGenerationFlow
+
+main: kit: flow: BasicEmailGenerationFlow:
+{
+  entity: "email_generation",
+  kind: "basic",
+  name: "BasicEmailGenerationFlow",
+  step: [
+    {
+      input: {
+        ref: "email_generation_ref01",
+        srcdatavar: "email_generation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_generation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailGenerationFlow"
+}

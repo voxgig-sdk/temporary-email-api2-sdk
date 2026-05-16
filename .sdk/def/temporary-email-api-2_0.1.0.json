@@ -1,0 +1,245 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Temporary Email API",
+    "description": "The Kingtmp.email API provides a service for generating temporary, secure, anonymous, and disposable email addresses to help users avoid spam and unwanted emails. This API allows users to create a temp mail that can be used to sign up for various online services while keeping their real mailbox clean and secure.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/l0v3m0n3y/Kingtmpemail"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://kingtmp.email",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/generate": {
+      "get": {
+        "summary": "Generate temporary email address",
+        "description": "Generates a new temporary, secure, anonymous, and disposable email address that can be used to receive emails without exposing your real email address.",
+        "operationId": "generateEmail",
+        "tags": [
+          "Email Generation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated temporary email address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "description": "The generated temporary email address",
+                      "example": "random123@kingtmp.email"
+                    },
+                    "token": {
+                      "type": "string",
+                      "description": "Authentication token for accessing the mailbox",
+                      "example": "abc123def456"
+                    },
+                    "expires_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Expiration timestamp of the temporary email",
+                      "example": "2024-01-01T12:00:00Z"
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful generation",
+                    "value": {
+                      "email": "temp_user_12345@kingtmp.email",
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+                      "expires_at": "2024-01-01T23:59:59Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inbox/{email}": {
+      "get": {
+        "summary": "Get inbox messages",
+        "description": "Retrieves all messages received by the temporary email address",
+        "operationId": "getInbox",
+        "tags": [
+          "Email Inbox"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "The temporary email address to check",
+            "schema": {
+              "type": "string",
+              "format": "email"
+            },
+            "example": "temp_user_12345@kingtmp.email"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved inbox messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "messages": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Message"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of messages",
+                      "example": 5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Email address not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Message": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique message identifier",
+            "example": "msg_123456"
+          },
+          "from": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender's email address",
+            "example": "sender@example.com"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Email subject line",
+            "example": "Welcome to our service"
+          },
+          "body": {
+            "type": "string",
+            "description": "Email body content",
+            "example": "Thank you for signing up..."
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the message was received",
+            "example": "2024-01-01T10:30:00Z"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "example": "document.pdf"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "File size in bytes",
+                  "example": 12345
+                },
+                "content_type": {
+                  "type": "string",
+                  "example": "application/pdf"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Invalid request"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code",
+            "example": 400
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details",
+            "example": "The provided email address is invalid"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Email Generation",
+      "description": "Operations for generating temporary email addresses"
+    },
+    {
+      "name": "Email Inbox",
+      "description": "Operations for managing and retrieving inbox messages"
+    }
+  ]
+}

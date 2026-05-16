@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "email_inbox": {
+      "EMAIL_INBOX00": {
+        "message": [],
+        "total": "s15",
+        "id": "EMAIL_INBOX00"
+      },
+      "EMAIL_INBOX01": {
+        "message": [],
+        "total": "s29",
+        "id": "EMAIL_INBOX01"
+      },
+      "EMAIL_INBOX02": {
+        "message": [],
+        "total": "s3d",
+        "id": "EMAIL_INBOX02"
+      }
+    }
+  },
+  "new": {
+    "email_inbox": {
+      "email_inbox_ref01": {
+        "message": [],
+        "total": "s51"
+      }
+    }
+  }
+}
