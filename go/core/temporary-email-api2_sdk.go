@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/temporary-email-api2-sdk/go/utility/struct"
 )
 
 type TemporaryEmailApi2SDK struct {
