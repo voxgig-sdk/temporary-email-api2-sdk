@@ -67,14 +67,12 @@ function email_generation_direct_setup($mockres)
     $env = Runner::env_override([
         "TEMPORARYEMAILAPI__TEST_EMAIL_GENERATION_ENTID" => [],
         "TEMPORARYEMAILAPI__TEST_LIVE" => "FALSE",
-        "TEMPORARYEMAILAPI__APIKEY" => "NONE",
     ]);
 
     $live = $env["TEMPORARYEMAILAPI__TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["TEMPORARYEMAILAPI__APIKEY"],
         ];
         $client = new TemporaryEmailApi2SDK($merged_opts);
         return [

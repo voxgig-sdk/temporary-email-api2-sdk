@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://kingtmp.email",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },

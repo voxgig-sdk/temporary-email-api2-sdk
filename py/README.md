@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from temporaryemailapi2_sdk import TemporaryEmailApi2SDK
 
-client = TemporaryEmailApi2SDK({
-    "apikey": os.environ.get("TEMPORARY-EMAIL-API2_APIKEY"),
-})
+client = TemporaryEmailApi2SDK({})
 ```
 
 ### 3. Load a emailgeneration
@@ -117,7 +114,6 @@ Create a `.env.local` file at the project root:
 
 ```
 TEMPORARY-EMAIL-API2_TEST_LIVE=TRUE
-TEMPORARY-EMAIL-API2_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,7 +137,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

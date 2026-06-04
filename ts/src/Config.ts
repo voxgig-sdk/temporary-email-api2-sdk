@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://kingtmp.email',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
