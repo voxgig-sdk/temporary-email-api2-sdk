@@ -10,7 +10,7 @@ The Python SDK for the TemporaryEmailApi2 API — an entity-oriented client foll
 
 ## Install
 ```bash
-pip install temporary-email-api2-sdk
+pip install voxgig-sdk-temporary-email-api2
 ```
 
 Or install from source:

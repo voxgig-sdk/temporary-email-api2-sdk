@@ -10,13 +10,13 @@ The Ruby SDK for the TemporaryEmailApi2 API — an entity-oriented client using 
 
 ## Install
 ```bash
-gem install temporary-email-api2-sdk
+gem install voxgig-sdk-temporary-email-api2
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "temporary-email-api2-sdk"
+gem "voxgig-sdk-temporary-email-api2"
 ```
 
 Then run:

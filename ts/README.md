@@ -10,7 +10,7 @@ The TypeScript SDK for the TemporaryEmailApi2 API — a type-safe, entity-orient
 
 ## Install
 ```bash
-npm install temporary-email-api2
+npm install @voxgig-sdk/temporary-email-api2
 ```
 ## Tutorial: your first API call
 
