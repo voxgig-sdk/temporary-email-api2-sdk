@@ -1,20 +1,8 @@
 # TemporaryEmailApi2 SDK
 
-Generate disposable email addresses and read their inboxes via a temporary mail API
+Temporary Email API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Temporary Email API
-
-Temporary Email API is a disposable / throwaway email service that lets you spin up short-lived email addresses on demand and read the messages they receive. The service is offered under the `kingtmp.email` domain.
-
-What you typically get from a temp-mail style API:
-
-- Create or request a new temporary email address
-- Poll the inbox for that address and read incoming messages (subject, sender, body)
-- Discard the address when you're done
-
-Useful for sign-up flows, automated testing of email-based onboarding, anti-spam experiments, and any workflow where you need a real-looking inbox without provisioning a permanent mailbox. Operational details such as message retention, rate limits, and authentication requirements are not documented on a public landing page at time of writing — check the upstream OpenAPI specification for exact endpoints and parameters.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install temporary-email-api2-sdk
 luarocks install temporary-email-api2-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TemporaryEmailApi2SDK } from 'temporary-email-api2'
 
-const client = new TemporaryEmailApi2SDK({})
+const client = new TemporaryEmailApi2SDK({
+  apikey: process.env.TEMPORARY-EMAIL-API2_APIKEY,
+})
 
+// Load emailgeneration data
+const emailgeneration = await client.EmailGeneration().load({})
+console.log(emailgeneration.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **EmailGeneration** | Operations for creating / requesting a fresh temporary email address that can receive mail. | `/api/generate` |
-| **EmailInbox** | Operations for listing and reading messages delivered to a previously-generated temporary address. | `/api/inbox/{email}` |
+| **EmailGeneration** |  | `/api/generate` |
+| **EmailInbox** |  | `/api/inbox/{email}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -109,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from temporaryemailapi2_sdk import TemporaryEmailApi2SDK
 
-client = TemporaryEmailApi2SDK({})
+client = TemporaryEmailApi2SDK({
+    "apikey": os.environ.get("TEMPORARY-EMAIL-API2_APIKEY"),
+})
 
 
 # Load a specific emailgeneration
-emailgeneration, err = client.EmailGeneration(None).load(
-    {"id": "example_id"}, None
-)
+emailgeneration, err = client.EmailGeneration().load({"id": "example_id"})
+print(emailgeneration)
 ```
 
 ### PHP
@@ -126,13 +120,14 @@ emailgeneration, err = client.EmailGeneration(None).load(
 <?php
 require_once 'temporaryemailapi2_sdk.php';
 
-$client = new TemporaryEmailApi2SDK([]);
+$client = new TemporaryEmailApi2SDK([
+    "apikey" => getenv("TEMPORARY-EMAIL-API2_APIKEY"),
+]);
 
 
 // Load a specific emailgeneration
-[$emailgeneration, $err] = $client->EmailGeneration(null)->load(
-    ["id" => "example_id"], null
-);
+[$emailgeneration, $err] = $client->EmailGeneration()->load(["id" => "example_id"]);
+print_r($emailgeneration);
 ```
 
 ### Golang
@@ -140,8 +135,13 @@ $client = new TemporaryEmailApi2SDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/temporary-email-api2-sdk/go"
 
-client := sdk.NewTemporaryEmailApi2SDK(map[string]any{})
+client := sdk.NewTemporaryEmailApi2SDK(map[string]any{
+    "apikey": os.Getenv("TEMPORARY-EMAIL-API2_APIKEY"),
+})
 
+// Load emailgeneration data
+emailgeneration, err := client.EmailGeneration(nil).Load(map[string]any{}, nil)
+fmt.Println(emailgeneration)
 ```
 
 ### Ruby
@@ -149,13 +149,14 @@ client := sdk.NewTemporaryEmailApi2SDK(map[string]any{})
 ```ruby
 require_relative "TemporaryEmailApi2_sdk"
 
-client = TemporaryEmailApi2SDK.new({})
+client = TemporaryEmailApi2SDK.new({
+  "apikey" => ENV["TEMPORARY-EMAIL-API2_APIKEY"],
+})
 
 
 # Load a specific emailgeneration
-emailgeneration, err = client.EmailGeneration(nil).load(
-  { "id" => "example_id" }, nil
-)
+emailgeneration, err = client.EmailGeneration().load({ "id" => "example_id" })
+puts emailgeneration
 ```
 
 ### Lua
@@ -163,13 +164,14 @@ emailgeneration, err = client.EmailGeneration(nil).load(
 ```lua
 local sdk = require("temporary-email-api2_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TEMPORARY-EMAIL-API2_APIKEY"),
+})
 
 
 -- Load a specific emailgeneration
-local emailgeneration, err = client:EmailGeneration(nil):load(
-  { id = "example_id" }, nil
-)
+local emailgeneration, err = client:EmailGeneration():load({ id = "example_id" })
+print(emailgeneration)
 ```
 
 ## Unit testing in offline mode
@@ -188,25 +190,21 @@ const result = await client.EmailGeneration().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TemporaryEmailApi2SDK.test(None, None)
-result, err = client.EmailGeneration(None).load(
-    {"id": "test01"}, None
-)
+client = TemporaryEmailApi2SDK.test()
+result, err = client.EmailGeneration().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TemporaryEmailApi2SDK::test(null, null);
-[$result, $err] = $client->EmailGeneration(null)->load(
-    ["id" => "test01"], null
-);
+$client = TemporaryEmailApi2SDK::test();
+[$result, $err] = $client->EmailGeneration()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.EmailGeneration(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -215,19 +213,15 @@ result, err := client.EmailGeneration(nil).Load(
 ### Ruby
 
 ```ruby
-client = TemporaryEmailApi2SDK.test(nil, nil)
-result, err = client.EmailGeneration(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TemporaryEmailApi2SDK.test
+result, err = client.EmailGeneration().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:EmailGeneration(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:EmailGeneration():load({ id = "test01" })
 ```
 
 ## How it works
@@ -331,10 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Temporary Email API
-
-- Upstream: [https://kingtmp.email](https://kingtmp.email)
 
 ---
 

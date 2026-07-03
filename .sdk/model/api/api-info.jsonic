@@ -16,22 +16,7 @@ main: {
       ]
       title: "Temporary Email API"
       version: "1.0.0"
-      tagline: "Generate disposable email addresses and read their inboxes via a temporary mail API"
-      homepage: "https://kingtmp.email"
-      about_md: `Temporary Email API is a disposable / throwaway email service that lets you spin up short-lived email addresses on demand and read the messages they receive. The service is offered under the \`kingtmp.email\` domain.
-
-What you typically get from a temp-mail style API:
-
-- Create or request a new temporary email address
-- Poll the inbox for that address and read incoming messages (subject, sender, body)
-- Discard the address when you're done
-
-Useful for sign-up flows, automated testing of email-based onboarding, anti-spam experiments, and any workflow where you need a real-looking inbox without provisioning a permanent mailbox. Operational details such as message retention, rate limits, and authentication requirements are not documented on a public landing page at time of writing — check the upstream OpenAPI specification for exact endpoints and parameters.`
-      entity_desc: {
-        email_generation: "Operations for creating / requesting a fresh temporary email address that can receive mail."
-        email_inbox: "Operations for listing and reading messages delivered to a previously-generated temporary address."
-      }
-      auth: false
     }
   }
 }
+

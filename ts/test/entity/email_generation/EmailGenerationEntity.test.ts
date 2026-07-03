@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'TEMPORARY_EMAIL_API__TEST_EMAIL_GENERATION_ENTID': idmap,
     'TEMPORARY_EMAIL_API__TEST_LIVE': 'FALSE',
     'TEMPORARY_EMAIL_API__TEST_EXPLAIN': 'FALSE',
+    'TEMPORARY_EMAIL_API__APIKEY': 'NONE',
   })
 
   idmap = env['TEMPORARY_EMAIL_API__TEST_EMAIL_GENERATION_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TemporaryEmailApi2SDK(merge([
       {
+        apikey: env.TEMPORARY_EMAIL_API__APIKEY,
       },
       extra
     ]))
