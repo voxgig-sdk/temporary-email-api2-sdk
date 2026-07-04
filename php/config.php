@@ -20,9 +20,6 @@ class TemporaryEmailApi2Config
             ],
             "options" => [
                 "base" => "https://kingtmp.email",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -121,6 +118,7 @@ class TemporaryEmailApi2Config
                         'orig' => 'email',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

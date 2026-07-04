@@ -16,7 +16,7 @@ class EmailGenerationDirectTest < Minitest::Test
     client = setup[:client]
 
 
-    result, err = client.direct({
+    result = client.direct({
       "path" => "api/generate",
       "method" => "GET",
       "params" => {},
@@ -25,8 +25,8 @@ class EmailGenerationDirectTest < Minitest::Test
       # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
       # than fail when the load endpoint isn't reachable with the IDs
       # we can construct from setup.idmap.
-      if !err.nil?
-        skip("load call failed (likely synthetic IDs against live API): #{err}")
+      if !result["err"].nil?
+        skip("load call failed (likely synthetic IDs against live API): #{result["err"]}")
         return
       end
       unless result["ok"]
@@ -39,7 +39,7 @@ class EmailGenerationDirectTest < Minitest::Test
         return
       end
     else
-      assert_nil err
+      assert_nil result["err"]
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
       assert !result["data"].nil?
@@ -61,14 +61,12 @@ def email_generation_direct_setup(mockres)
   env = Runner.env_override({
     "TEMPORARYEMAILAPI__TEST_EMAIL_GENERATION_ENTID" => {},
     "TEMPORARYEMAILAPI__TEST_LIVE" => "FALSE",
-    "TEMPORARYEMAILAPI__APIKEY" => "NONE",
   })
 
   live = env["TEMPORARYEMAILAPI__TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["TEMPORARYEMAILAPI__APIKEY"],
     }
     client = TemporaryEmailApi2SDK.new(merged_opts)
     return {

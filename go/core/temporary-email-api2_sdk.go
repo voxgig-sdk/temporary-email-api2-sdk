@@ -245,11 +245,17 @@ func (sdk *TemporaryEmailApi2SDK) Direct(fetchargs map[string]any) (map[string]a
 }
 
 
+// EmailGeneration returns a EmailGeneration entity bound to this client.
+// Idiomatic usage: client.EmailGeneration(nil).List(nil, nil) or
+// client.EmailGeneration(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TemporaryEmailApi2SDK) EmailGeneration(data map[string]any) TemporaryEmailApi2Entity {
 	return NewEmailGenerationEntityFunc(sdk, data)
 }
 
 
+// EmailInbox returns a EmailInbox entity bound to this client.
+// Idiomatic usage: client.EmailInbox(nil).List(nil, nil) or
+// client.EmailInbox(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TemporaryEmailApi2SDK) EmailInbox(data map[string]any) TemporaryEmailApi2Entity {
 	return NewEmailInboxEntityFunc(sdk, data)
 }

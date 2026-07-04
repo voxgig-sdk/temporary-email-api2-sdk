@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -122,7 +121,7 @@ Alias for `TemporaryEmailApi2SDK.test()`.
 ## EmailGenerationEntity
 
 ```ts
-const email_generation = client.EmailGeneration()
+const email_generation = client.email_generation
 ```
 
 ### Fields
@@ -140,7 +139,7 @@ const email_generation = client.EmailGeneration()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.EmailGeneration().load({ id: 'email_generation_id' })
+const result = await client.email_generation.load({ id: 'email_generation_id' })
 ```
 
 ### Common Methods
@@ -174,7 +173,7 @@ Return a copy of the entity options.
 ## EmailInboxEntity
 
 ```ts
-const email_inbox = client.EmailInbox()
+const email_inbox = client.email_inbox
 ```
 
 ### Fields
@@ -191,7 +190,7 @@ const email_inbox = client.EmailInbox()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.EmailInbox().load({ id: 'email_inbox_id' })
+const result = await client.email_inbox.load({ id: 'email_inbox_id' })
 ```
 
 ### Common Methods

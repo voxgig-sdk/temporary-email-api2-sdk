@@ -144,16 +144,23 @@ class TemporaryEmailApi2SDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class TemporaryEmailApi2SDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class TemporaryEmailApi2SDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def email_generation(self):
+        """Idiomatic facade: client.email_generation.list() / client.email_generation.load({"id": ...})."""
+        from entity.email_generation_entity import EmailGenerationEntity
+        cached = getattr(self, "_email_generation", None)
+        if cached is None:
+            cached = EmailGenerationEntity(self, None)
+            self._email_generation = cached
+        return cached
 
     def EmailGeneration(self, data=None):
+        # Deprecated: use client.email_generation instead.
         from entity.email_generation_entity import EmailGenerationEntity
         return EmailGenerationEntity(self, data)
 
 
+    @property
+    def email_inbox(self):
+        """Idiomatic facade: client.email_inbox.list() / client.email_inbox.load({"id": ...})."""
+        from entity.email_inbox_entity import EmailInboxEntity
+        cached = getattr(self, "_email_inbox", None)
+        if cached is None:
+            cached = EmailInboxEntity(self, None)
+            self._email_inbox = cached
+        return cached
+
     def EmailInbox(self, data=None):
+        # Deprecated: use client.email_inbox instead.
         from entity.email_inbox_entity import EmailInboxEntity
         return EmailInboxEntity(self, data)
 

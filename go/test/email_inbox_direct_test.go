@@ -110,14 +110,12 @@ func email_inboxDirectSetup(mockres any) *email_inboxDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TEMPORARYEMAILAPI__TEST_EMAIL_INBOX_ENTID": map[string]any{},
 		"TEMPORARYEMAILAPI__TEST_LIVE":    "FALSE",
-		"TEMPORARYEMAILAPI__APIKEY":       "NONE",
 	})
 
 	live := env["TEMPORARYEMAILAPI__TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["TEMPORARYEMAILAPI__APIKEY"],
 		}
 		client := sdk.NewTemporaryEmailApi2SDK(mergedOpts)
 

@@ -49,8 +49,7 @@ class TestEmailGenerationEntity:
         # LOAD
         email_generation_ref01_ent = client.EmailGeneration(None)
         email_generation_ref01_match_dt0 = {}
-        email_generation_ref01_data_dt0_loaded, err = email_generation_ref01_ent.load(email_generation_ref01_match_dt0, None)
-        assert err is None
+        email_generation_ref01_data_dt0_loaded = email_generation_ref01_ent.load(email_generation_ref01_match_dt0, None)
         assert email_generation_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _email_generation_basic_setup(extra):
         "TEMPORARYEMAILAPI__TEST_EMAIL_GENERATION_ENTID": idmap,
         "TEMPORARYEMAILAPI__TEST_LIVE": "FALSE",
         "TEMPORARYEMAILAPI__TEST_EXPLAIN": "FALSE",
-        "TEMPORARYEMAILAPI__APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _email_generation_basic_setup(extra):
     if env.get("TEMPORARYEMAILAPI__TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TEMPORARYEMAILAPI__APIKEY"),
             },
             extra or {},
         ])

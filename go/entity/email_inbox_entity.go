@@ -85,6 +85,27 @@ func (e *EmailInboxEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an EmailInbox; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *EmailInboxEntity) DataTyped(data ...EmailInbox) EmailInbox {
+	if len(data) > 0 {
+		return typedFrom[EmailInbox](e.Data(asMap(data[0])))
+	}
+	return typedFrom[EmailInbox](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through EmailInbox (all fields
+// optional at the wire level).
+func (e *EmailInboxEntity) MatchTyped(match ...EmailInbox) EmailInbox {
+	if len(match) > 0 {
+		return typedFrom[EmailInbox](e.Match(asMap(match[0])))
+	}
+	return typedFrom[EmailInbox](e.Match())
+}
+
 
 func (e *EmailInboxEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *EmailInboxEntity) Load(reqmatch map[string]any, ctrl map[string]any) (a
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// EmailInboxLoadMatch and returns an EmailInbox. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *EmailInboxEntity) LoadTyped(reqmatch EmailInboxLoadMatch, ctrl map[string]any) (EmailInbox, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return EmailInbox{}, err
+	}
+	return typedFrom[EmailInbox](res), nil
 }
 
 

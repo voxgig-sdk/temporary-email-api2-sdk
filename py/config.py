@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://kingtmp.email",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -116,6 +113,7 @@ def make_config():
                       "orig": "email",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

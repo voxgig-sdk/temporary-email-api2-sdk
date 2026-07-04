@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EmailGenerationLoadMatch
+---@param ctrl? table
+---@return EmailGeneration
+---@return string? err
 function EmailGenerationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

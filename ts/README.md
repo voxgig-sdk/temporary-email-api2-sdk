@@ -9,9 +9,12 @@ The TypeScript SDK for the TemporaryEmailApi2 API — a type-safe, entity-orient
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/temporary-email-api2
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases](https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TemporaryEmailApi2SDK } from 'temporary-email-api2'
+import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
 
-const client = new TemporaryEmailApi2SDK({
-  apikey: process.env.TEMPORARY-EMAIL-API2_APIKEY,
-})
+const client = new TemporaryEmailApi2SDK()
 ```
 
-### 3. Load a emailgeneration
+### 3. Load an emailgeneration
 
 ```ts
-const result = await client.EmailGeneration().load({ id: 'example_id' })
+const result = await client.emailgeneration.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TemporaryEmailApi2SDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.emailgeneration.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new TemporaryEmailApi2SDK({ apikey: '...' })
+const client = new TemporaryEmailApi2SDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.emailgeneration
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new TemporaryEmailApi2SDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new TemporaryEmailApi2SDK({
 Create a `.env.local` file at the project root:
 
 ```
-TEMPORARY-EMAIL-API2_TEST_LIVE=TRUE
-TEMPORARY-EMAIL-API2_APIKEY=<your-key>
+TEMPORARY_EMAIL_API2_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new TemporaryEmailApi2SDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new TemporaryEmailApi2SDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -280,7 +277,7 @@ API path: `/api/inbox/{email}`
 
 ### EmailGeneration
 
-Create an instance: `const email_generation = client.EmailGeneration()`
+Create an instance: `const email_generation = client.email_generation`
 
 #### Operations
 
@@ -299,13 +296,13 @@ Create an instance: `const email_generation = client.EmailGeneration()`
 #### Example: Load
 
 ```ts
-const email_generation = await client.EmailGeneration().load({ id: 'email_generation_id' })
+const email_generation = await client.email_generation.load({ id: 'email_generation_id' })
 ```
 
 
 ### EmailInbox
 
-Create an instance: `const email_inbox = client.EmailInbox()`
+Create an instance: `const email_inbox = client.email_inbox`
 
 #### Operations
 
@@ -323,7 +320,7 @@ Create an instance: `const email_inbox = client.EmailInbox()`
 #### Example: Load
 
 ```ts
-const email_inbox = await client.EmailInbox().load({ id: 'email_inbox_id' })
+const email_inbox = await client.email_inbox.load({ id: 'email_inbox_id' })
 ```
 
 
@@ -384,7 +381,7 @@ temporary-email-api2/
 Import the SDK from the package root:
 
 ```ts
-import { TemporaryEmailApi2SDK } from 'temporary-email-api2'
+import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
 ```
 
 ### Entity state
@@ -394,11 +391,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const emailgeneration = client.emailgeneration
+await emailgeneration.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// emailgeneration.data() now returns the loaded emailgeneration data
+// emailgeneration.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

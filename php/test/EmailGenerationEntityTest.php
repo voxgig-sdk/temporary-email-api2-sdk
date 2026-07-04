@@ -49,8 +49,7 @@ class EmailGenerationEntityTest extends TestCase
         // LOAD
         $email_generation_ref01_ent = $client->EmailGeneration(null);
         $email_generation_ref01_match_dt0 = [];
-        [$email_generation_ref01_data_dt0_loaded, $err] = $email_generation_ref01_ent->load($email_generation_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $email_generation_ref01_data_dt0_loaded = $email_generation_ref01_ent->load($email_generation_ref01_match_dt0, null);
         $this->assertNotNull($email_generation_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function email_generation_basic_setup($extra)
         "TEMPORARYEMAILAPI__TEST_EMAIL_GENERATION_ENTID" => $idmap,
         "TEMPORARYEMAILAPI__TEST_LIVE" => "FALSE",
         "TEMPORARYEMAILAPI__TEST_EXPLAIN" => "FALSE",
-        "TEMPORARYEMAILAPI__APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function email_generation_basic_setup($extra)
     if ($env["TEMPORARYEMAILAPI__TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TEMPORARYEMAILAPI__APIKEY"],
             ],
             $extra ?? [],
         ]);

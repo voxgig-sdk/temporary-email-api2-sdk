@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:email_generation():list() / client:email_generation():load({ id = ... })
+function TemporaryEmailApi2SDK:email_generation(data)
+  local EntityMod = require("entity.email_generation_entity")
+  if data == nil then
+    if self._email_generation == nil then
+      self._email_generation = EntityMod.new(self, nil)
+    end
+    return self._email_generation
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:email_generation() instead.
 function TemporaryEmailApi2SDK:EmailGeneration(data)
   local EntityMod = require("entity.email_generation_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:email_inbox():list() / client:email_inbox():load({ id = ... })
+function TemporaryEmailApi2SDK:email_inbox(data)
+  local EntityMod = require("entity.email_inbox_entity")
+  if data == nil then
+    if self._email_inbox == nil then
+      self._email_inbox = EntityMod.new(self, nil)
+    end
+    return self._email_inbox
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:email_inbox() instead.
 function TemporaryEmailApi2SDK:EmailInbox(data)
   local EntityMod = require("entity.email_inbox_entity")
   return EntityMod.new(self, data)

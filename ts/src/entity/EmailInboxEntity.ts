@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  EmailInbox,
+  EmailInboxLoadMatch,
+} from '../TemporaryEmailApi2Types'
 
 // TODO: needs Entity superclass
-class EmailInboxEntity extends TemporaryEmailApi2EntityBase {
+class EmailInboxEntity extends TemporaryEmailApi2EntityBase<EmailInbox> {
 
   constructor(client: TemporaryEmailApi2SDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class EmailInboxEntity extends TemporaryEmailApi2EntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: EmailInboxLoadMatch, ctrl?: Control): Promise<EmailInbox> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class EmailInboxEntity extends TemporaryEmailApi2EntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<EmailInbox> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

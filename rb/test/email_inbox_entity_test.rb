@@ -42,8 +42,7 @@ class EmailInboxEntityTest < Minitest::Test
     # LOAD
     email_inbox_ref01_ent = client.EmailInbox(nil)
     email_inbox_ref01_match_dt0 = {}
-    email_inbox_ref01_data_dt0_loaded, err = email_inbox_ref01_ent.load(email_inbox_ref01_match_dt0, nil)
-    assert_nil err
+    email_inbox_ref01_data_dt0_loaded = email_inbox_ref01_ent.load(email_inbox_ref01_match_dt0, nil)
     assert !email_inbox_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def email_inbox_basic_setup(extra)
     "TEMPORARYEMAILAPI__TEST_EMAIL_INBOX_ENTID" => idmap,
     "TEMPORARYEMAILAPI__TEST_LIVE" => "FALSE",
     "TEMPORARYEMAILAPI__TEST_EXPLAIN" => "FALSE",
-    "TEMPORARYEMAILAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def email_inbox_basic_setup(extra)
   if env["TEMPORARYEMAILAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TEMPORARYEMAILAPI__APIKEY"],
       },
       extra || {},
     ])
