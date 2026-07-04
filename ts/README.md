@@ -30,11 +30,14 @@ const client = new TemporaryEmailApi2SDK()
 
 ### 3. Load an emailgeneration
 
-```ts
-const result = await client.emailgeneration.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const emailgeneration = await client.EmailGeneration().load({ id: 'example_id' })
+  console.log(emailgeneration)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TemporaryEmailApi2SDK.test()
 
-const result = await client.emailgeneration.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const emailgeneration = await client.EmailGeneration().load({ id: 'test01' })
+// emailgeneration is a bare entity populated with mock response data
+console.log(emailgeneration)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.emailgeneration
+const entity = client.EmailGeneration()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -175,8 +181,8 @@ new TemporaryEmailApi2SDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `EmailGeneration(data?)` | `EmailGenerationEntity` | Create a EmailGeneration entity instance. |
-| `EmailInbox(data?)` | `EmailInboxEntity` | Create a EmailInbox entity instance. |
+| `EmailGeneration(data?)` | `EmailGenerationEntity` | Create an EmailGeneration entity instance. |
+| `EmailInbox(data?)` | `EmailInboxEntity` | Create an EmailInbox entity instance. |
 | `tester(testopts?, sdkopts?)` | `TemporaryEmailApi2SDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -193,29 +199,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): TemporaryEmailApi2SDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -277,7 +284,7 @@ API path: `/api/inbox/{email}`
 
 ### EmailGeneration
 
-Create an instance: `const email_generation = client.email_generation`
+Create an instance: `const email_generation = client.EmailGeneration()`
 
 #### Operations
 
@@ -296,13 +303,13 @@ Create an instance: `const email_generation = client.email_generation`
 #### Example: Load
 
 ```ts
-const email_generation = await client.email_generation.load({ id: 'email_generation_id' })
+const email_generation = await client.EmailGeneration().load({ id: 'email_generation_id' })
 ```
 
 
 ### EmailInbox
 
-Create an instance: `const email_inbox = client.email_inbox`
+Create an instance: `const email_inbox = client.EmailInbox()`
 
 #### Operations
 
@@ -320,7 +327,7 @@ Create an instance: `const email_inbox = client.email_inbox`
 #### Example: Load
 
 ```ts
-const email_inbox = await client.email_inbox.load({ id: 'email_inbox_id' })
+const email_inbox = await client.EmailInbox().load({ id: 'email_inbox_id' })
 ```
 
 
@@ -391,7 +398,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const emailgeneration = client.emailgeneration
+const emailgeneration = client.EmailGeneration()
 await emailgeneration.load({ id: "example_id" })
 
 // emailgeneration.data() now returns the loaded emailgeneration data

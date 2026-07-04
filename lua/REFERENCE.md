@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## EmailGenerationEntity
 
 ```lua
-local email_generation = client:email_generation(nil)
+local email_generation = client:EmailGeneration(nil)
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ local email_generation = client:email_generation(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:email_generation():load({ id = "email_generation_id" })
+local result, err = client:EmailGeneration():load({ id = "email_generation_id" })
 ```
 
 ### Common Methods
@@ -141,7 +141,7 @@ Return the entity name.
 ## EmailInboxEntity
 
 ```lua
-local email_inbox = client:email_inbox(nil)
+local email_inbox = client:EmailInbox(nil)
 ```
 
 ### Fields
@@ -158,7 +158,7 @@ local email_inbox = client:email_inbox(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:email_inbox():load({ id = "email_inbox_id" })
+local result, err = client:EmailInbox():load({ id = "email_inbox_id" })
 ```
 
 ### Common Methods

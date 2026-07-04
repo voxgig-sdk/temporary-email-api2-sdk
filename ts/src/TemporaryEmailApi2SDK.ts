@@ -205,28 +205,14 @@ class TemporaryEmailApi2SDK {
 
 
 
-  _email_generation?: EmailGenerationEntity
-
-  // Idiomatic facade: `client.email_generation.list()` / `client.email_generation.load({ id })`.
-  get email_generation(): EmailGenerationEntity {
-    return (this._email_generation ??= new EmailGenerationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.email_generation` instead. */
+  // Entity access: `client.EmailGeneration().list()` / `client.EmailGeneration().load({ id })`.
   EmailGeneration(data?: any) {
     const self = this
     return new EmailGenerationEntity(self,data)
   }
 
 
-  _email_inbox?: EmailInboxEntity
-
-  // Idiomatic facade: `client.email_inbox.list()` / `client.email_inbox.load({ id })`.
-  get email_inbox(): EmailInboxEntity {
-    return (this._email_inbox ??= new EmailInboxEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.email_inbox` instead. */
+  // Entity access: `client.EmailInbox().list()` / `client.EmailInbox().load({ id })`.
   EmailInbox(data?: any) {
     const self = this
     return new EmailInboxEntity(self,data)

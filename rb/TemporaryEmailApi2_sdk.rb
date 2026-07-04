@@ -208,26 +208,14 @@ class TemporaryEmailApi2SDK
   end
 
 
-  # Idiomatic facade: client.email_generation.list / client.email_generation.load({ "id" => ... })
-  def email_generation
-    require_relative 'entity/email_generation_entity'
-    @email_generation ||= EmailGenerationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.email_generation instead.
+  # Canonical facade: client.EmailGeneration.list / client.EmailGeneration.load({ "id" => ... })
   def EmailGeneration(data = nil)
     require_relative 'entity/email_generation_entity'
     EmailGenerationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.email_inbox.list / client.email_inbox.load({ "id" => ... })
-  def email_inbox
-    require_relative 'entity/email_inbox_entity'
-    @email_inbox ||= EmailInboxEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.email_inbox instead.
+  # Canonical facade: client.EmailInbox.list / client.EmailInbox.load({ "id" => ... })
   def EmailInbox(data = nil)
     require_relative 'entity/email_inbox_entity'
     EmailInboxEntity.new(self, data)

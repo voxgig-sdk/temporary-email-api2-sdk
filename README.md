@@ -26,9 +26,9 @@ import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
 
 const client = new TemporaryEmailApi2SDK()
 
-// Load emailgeneration data
-const emailgeneration = await client.emailgeneration.load({})
-console.log(emailgeneration.data)
+// Load emailgeneration data (returns a EmailGeneration)
+const emailgeneration = await client.EmailGeneration().load()
+console.log(emailgeneration)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,8 +85,8 @@ from temporaryemailapi2_sdk import TemporaryEmailApi2SDK
 client = TemporaryEmailApi2SDK()
 
 
-# Load a specific emailgeneration
-emailgeneration = client.emailgeneration.load({"id": "example_id"})
+# Load a specific emailgeneration (returns the record, raises on error)
+emailgeneration = client.EmailGeneration().load({"id": "example_id"})
 print(emailgeneration)
 ```
 
@@ -99,8 +99,8 @@ require_once 'temporaryemailapi2_sdk.php';
 $client = new TemporaryEmailApi2SDK();
 
 
-// Load a specific emailgeneration
-$emailgeneration = $client->emailgeneration()->load(["id" => "example_id"]);
+// Load a specific emailgeneration (returns the bare record; throws on error)
+$emailgeneration = $client->EmailGeneration()->load(["id" => "example_id"]);
 print_r($emailgeneration);
 ```
 
@@ -124,8 +124,8 @@ require_relative "TemporaryEmailApi2_sdk"
 client = TemporaryEmailApi2SDK.new
 
 
-# Load a specific emailgeneration
-emailgeneration = client.emailgeneration.load({ "id" => "example_id" })
+# Load a specific emailgeneration (returns the bare record; raises on error)
+emailgeneration = client.EmailGeneration.load({ "id" => "example_id" })
 puts emailgeneration
 ```
 
@@ -138,7 +138,7 @@ local client = sdk.new()
 
 
 -- Load a specific emailgeneration
-local emailgeneration, err = client:emailgeneration():load({ id = "example_id" })
+local emailgeneration, err = client:EmailGeneration():load({ id = "example_id" })
 print(emailgeneration)
 ```
 
@@ -151,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TemporaryEmailApi2SDK.test()
-const result = await client.emailgeneration.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const emailgeneration = await client.EmailGeneration().load({ id: 'test01' })
+// emailgeneration is a bare EmailGeneration populated with mock data
+console.log(emailgeneration)
 ```
 
 ### Python
 
 ```python
 client = TemporaryEmailApi2SDK.test()
-result = client.emailgeneration.load({"id": "test01"})
+emailgeneration = client.EmailGeneration().load({"id": "test01"})
+print(emailgeneration)
 ```
 
 ### PHP
 
 ```php
-$client = TemporaryEmailApi2SDK::test();
-$result = $client->emailgeneration()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TemporaryEmailApi2SDK::test([
+    "entity" => ["emailgeneration" => ["test01" => ["id" => "test01"]]],
+]);
+$emailgeneration = $client->EmailGeneration()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -181,15 +186,18 @@ result, err := client.EmailGeneration(nil).Load(
 ### Ruby
 
 ```ruby
-client = TemporaryEmailApi2SDK.test
-result = client.emailgeneration.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TemporaryEmailApi2SDK.test({
+  "entity" => { "emailgeneration" => { "test01" => { "id" => "test01" } } },
+})
+emailgeneration = client.EmailGeneration.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:emailgeneration():load({ id = "test01" })
+local result, err = client:EmailGeneration():load({ id = "test01" })
 ```
 
 ## How it works
@@ -237,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -89,7 +89,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EmailGenerationEntity
 
 ```php
-$email_generation = $client->email_generation();
+$email_generation = $client->EmailGeneration();
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ $email_generation = $client->email_generation();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->email_generation()->load(["id" => "email_generation_id"]);
+$result = $client->EmailGeneration()->load(["id" => "email_generation_id"]);
 ```
 
 ### Common Methods
@@ -143,7 +143,7 @@ Return the entity name.
 ## EmailInboxEntity
 
 ```php
-$email_inbox = $client->email_inbox();
+$email_inbox = $client->EmailInbox();
 ```
 
 ### Fields
@@ -160,7 +160,7 @@ $email_inbox = $client->email_inbox();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->email_inbox()->load(["id" => "email_inbox_id"]);
+$result = $client->EmailInbox()->load(["id" => "email_inbox_id"]);
 ```
 
 ### Common Methods

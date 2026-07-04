@@ -233,10 +233,10 @@ class TemporaryEmailApi2SDK
 
     private $_email_generation = null;
 
-    // Idiomatic facade: $client->email_generation()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EmailGeneration() (PHP method
-    // names are case-insensitive).
-    public function email_generation($data = null)
+    // Canonical facade: $client->EmailGeneration()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->email_generation()
+    // resolves here too.
+    public function EmailGeneration($data = null)
     {
         require_once __DIR__ . '/entity/email_generation_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class TemporaryEmailApi2SDK
 
     private $_email_inbox = null;
 
-    // Idiomatic facade: $client->email_inbox()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias EmailInbox() (PHP method
-    // names are case-insensitive).
-    public function email_inbox($data = null)
+    // Canonical facade: $client->EmailInbox()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->email_inbox()
+    // resolves here too.
+    public function EmailInbox($data = null)
     {
         require_once __DIR__ . '/entity/email_inbox_entity.php';
         if ($data === null) {

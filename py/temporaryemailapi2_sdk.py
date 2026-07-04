@@ -220,41 +220,21 @@ class TemporaryEmailApi2SDK:
         }
 
 
-    @property
-    def email_generation(self):
-        """Idiomatic facade: client.email_generation.list() / client.email_generation.load({"id": ...})."""
-        from entity.email_generation_entity import EmailGenerationEntity
-        cached = getattr(self, "_email_generation", None)
-        if cached is None:
-            cached = EmailGenerationEntity(self, None)
-            self._email_generation = cached
-        return cached
-
-    def EmailGeneration(self, data=None):
-        # Deprecated: use client.email_generation instead.
+    def EmailGeneration(self, data=None) -> "EmailGenerationEntity":
+        """Entity factory: client.EmailGeneration().list({}) / client.EmailGeneration().load({"id": ...})."""
         from entity.email_generation_entity import EmailGenerationEntity
         return EmailGenerationEntity(self, data)
 
 
-    @property
-    def email_inbox(self):
-        """Idiomatic facade: client.email_inbox.list() / client.email_inbox.load({"id": ...})."""
-        from entity.email_inbox_entity import EmailInboxEntity
-        cached = getattr(self, "_email_inbox", None)
-        if cached is None:
-            cached = EmailInboxEntity(self, None)
-            self._email_inbox = cached
-        return cached
-
-    def EmailInbox(self, data=None):
-        # Deprecated: use client.email_inbox instead.
+    def EmailInbox(self, data=None) -> "EmailInboxEntity":
+        """Entity factory: client.EmailInbox().list({}) / client.EmailInbox().load({"id": ...})."""
         from entity.email_inbox_entity import EmailInboxEntity
         return EmailInboxEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TemporaryEmailApi2SDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class TemporaryEmailApi2SDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.email_generation_entity import EmailGenerationEntity
+    from entity.email_inbox_entity import EmailInboxEntity

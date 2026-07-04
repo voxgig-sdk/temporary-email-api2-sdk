@@ -121,7 +121,7 @@ Alias for `TemporaryEmailApi2SDK.test()`.
 ## EmailGenerationEntity
 
 ```ts
-const email_generation = client.email_generation
+const email_generation = client.EmailGeneration()
 ```
 
 ### Fields
@@ -139,7 +139,7 @@ const email_generation = client.email_generation
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.email_generation.load({ id: 'email_generation_id' })
+const result = await client.EmailGeneration().load({ id: 'email_generation_id' })
 ```
 
 ### Common Methods
@@ -173,7 +173,7 @@ Return a copy of the entity options.
 ## EmailInboxEntity
 
 ```ts
-const email_inbox = client.email_inbox
+const email_inbox = client.EmailInbox()
 ```
 
 ### Fields
@@ -190,7 +190,7 @@ const email_inbox = client.email_inbox
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.email_inbox.load({ id: 'email_inbox_id' })
+const result = await client.EmailInbox().load({ id: 'email_inbox_id' })
 ```
 
 ### Common Methods
