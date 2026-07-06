@@ -20,7 +20,7 @@ class EmailGeneration
     public ?string $token = null;
 }
 
-/** Match filter for EmailGeneration#load (any subset of EmailGeneration fields). */
+/** Request payload for EmailGeneration#load. */
 class EmailGenerationLoadMatch
 {
     public ?string $email = null;

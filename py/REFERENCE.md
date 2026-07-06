@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmailApi2 Python SDK.
 ### Constructor
 
 ```python
-from temporary-email-api2_sdk import TemporaryEmailApi2SDK
+from temporaryemailapi2_sdk import TemporaryEmailApi2SDK
 
 client = TemporaryEmailApi2SDK(options)
 ```
@@ -91,9 +91,9 @@ email_generation = client.EmailGeneration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `str` | No |  |
+| `expires_at` | `str` | No |  |
+| `token` | `str` | No |  |
 
 ### Operations
 
@@ -102,7 +102,7 @@ email_generation = client.EmailGeneration()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.EmailGeneration().load({"id": "email_generation_id"})
+result = client.EmailGeneration().load()
 ```
 
 ### Common Methods
@@ -144,8 +144,8 @@ email_inbox = client.EmailInbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 

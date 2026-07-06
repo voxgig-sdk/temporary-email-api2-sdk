@@ -25,7 +25,7 @@ EmailGeneration = Struct.new(
   keyword_init: true
 )
 
-# Match filter for EmailGeneration#load (any subset of EmailGeneration fields).
+# Request payload for EmailGeneration#load.
 #
 # @!attribute [rw] email
 #   @return [String, nil]

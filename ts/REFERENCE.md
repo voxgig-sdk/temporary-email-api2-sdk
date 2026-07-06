@@ -128,9 +128,9 @@ const email_generation = client.EmailGeneration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -139,7 +139,7 @@ const email_generation = client.EmailGeneration()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.EmailGeneration().load({ id: 'email_generation_id' })
+const result = await client.EmailGeneration().load()
 ```
 
 ### Common Methods
@@ -180,8 +180,8 @@ const email_inbox = client.EmailInbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `any[]` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 

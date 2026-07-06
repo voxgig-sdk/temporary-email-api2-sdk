@@ -11,7 +11,11 @@ export interface EmailGeneration {
   token?: string
 }
 
-export type EmailGenerationLoadMatch = Partial<EmailGeneration>
+export interface EmailGenerationLoadMatch {
+  email?: string
+  expires_at?: string
+  token?: string
+}
 
 export interface EmailInbox {
   message?: any[]

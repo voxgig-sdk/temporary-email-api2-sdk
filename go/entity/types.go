@@ -15,8 +15,7 @@ type EmailGeneration struct {
 	Token *string `json:"token,omitempty"`
 }
 
-// EmailGenerationLoadMatch mirrors the email_generation fields as an all-optional match
-// filter (Go analog of Partial<EmailGeneration>).
+// EmailGenerationLoadMatch is the typed request payload for EmailGeneration.LoadTyped.
 type EmailGenerationLoadMatch struct {
 	Email *string `json:"email,omitempty"`
 	ExpiresAt *string `json:"expires_at,omitempty"`

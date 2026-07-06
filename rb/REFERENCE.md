@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmailApi2 Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'temporary-email-api2_sdk'
+require_relative 'TemporaryEmailApi2_sdk'
 
 client = TemporaryEmailApi2SDK.new(options)
 ```
@@ -97,9 +97,9 @@ email_generation = client.EmailGeneration
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `String` | No |  |
+| `expires_at` | `String` | No |  |
+| `token` | `String` | No |  |
 
 ### Operations
 
@@ -108,7 +108,7 @@ email_generation = client.EmailGeneration
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.EmailGeneration.load({ "id" => "email_generation_id" })
+result = client.EmailGeneration.load()
 ```
 
 ### Common Methods
@@ -151,8 +151,8 @@ email_inbox = client.EmailInbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 

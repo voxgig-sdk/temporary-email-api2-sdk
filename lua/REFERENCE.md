@@ -94,9 +94,9 @@ local email_generation = client:EmailGeneration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -105,7 +105,7 @@ local email_generation = client:EmailGeneration(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:EmailGeneration():load({ id = "email_generation_id" })
+local result, err = client:EmailGeneration():load()
 ```
 
 ### Common Methods
@@ -148,8 +148,8 @@ local email_inbox = client:EmailInbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `table` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 

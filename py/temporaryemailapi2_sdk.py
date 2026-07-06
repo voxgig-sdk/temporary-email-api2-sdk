@@ -221,13 +221,13 @@ class TemporaryEmailApi2SDK:
 
 
     def EmailGeneration(self, data=None) -> "EmailGenerationEntity":
-        """Entity factory: client.EmailGeneration().list({}) / client.EmailGeneration().load({"id": ...})."""
+        """Entity factory: client.EmailGeneration().list() / client.EmailGeneration().load({"id": ...})."""
         from entity.email_generation_entity import EmailGenerationEntity
         return EmailGenerationEntity(self, data)
 
 
     def EmailInbox(self, data=None) -> "EmailInboxEntity":
-        """Entity factory: client.EmailInbox().list({}) / client.EmailInbox().load({"id": ...})."""
+        """Entity factory: client.EmailInbox().list() / client.EmailInbox().load({"id": ...})."""
         from entity.email_inbox_entity import EmailInboxEntity
         return EmailInboxEntity(self, data)
 

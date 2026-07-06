@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmailApi2 PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/temporary-email-api2_sdk.php';
+require_once __DIR__ . '/temporaryemailapi2_sdk.php';
 
 $client = new TemporaryEmailApi2SDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `EmailGenerationEntity` instance. Pass `null` for no initial data.
 
 Create a new `EmailInboxEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TemporaryEmailApi2Utility`
 
 Return a copy of the SDK utility object.
 
@@ -96,9 +96,9 @@ $email_generation = $client->EmailGeneration();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -107,24 +107,24 @@ $email_generation = $client->EmailGeneration();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->EmailGeneration()->load(["id" => "email_generation_id"]);
+$result = $client->EmailGeneration()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -133,7 +133,7 @@ Set the entity match criteria.
 Create a new `EmailGenerationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -150,8 +150,8 @@ $email_inbox = $client->EmailInbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `array` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -165,19 +165,19 @@ $result = $client->EmailInbox()->load(["id" => "email_inbox_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -186,7 +186,7 @@ Set the entity match criteria.
 Create a new `EmailInboxEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

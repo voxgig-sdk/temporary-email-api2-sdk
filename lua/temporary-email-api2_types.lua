@@ -12,6 +12,9 @@
 ---@field token? string
 
 ---@class EmailGenerationLoadMatch
+---@field email? string
+---@field expires_at? string
+---@field token? string
 
 ---@class EmailInbox
 ---@field message? table

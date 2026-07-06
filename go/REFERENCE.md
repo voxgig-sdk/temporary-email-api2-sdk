@@ -101,9 +101,9 @@ email_generation := client.EmailGeneration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `token` | ``$STRING`` | No |  |
+| `email` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `token` | `string` | No |  |
 
 ### Operations
 
@@ -112,7 +112,7 @@ email_generation := client.EmailGeneration(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.EmailGeneration(nil).Load(map[string]any{"id": "email_generation_id"}, nil)
+result, err := client.EmailGeneration(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -149,8 +149,8 @@ email_inbox := client.EmailInbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `message` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
