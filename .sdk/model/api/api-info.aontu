@@ -15,9 +15,9 @@ main: {
           url: "https://kingtmp.email"
         }
       ]
+      summary: "The Kingtmp.email API provides a service for generating temporary, secure, anonymous, and disposable email addresses to help users avoid spam and unwanted emails."
       title: "Temporary Email API"
       version: "1.0.0"
+      website: "https://kingtmp.email"
     }
   }
-}
-

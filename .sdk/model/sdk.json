@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -308,14 +305,17 @@
           "url": "https://github.com/l0v3m0n3y/Kingtmpemail"
         },
         "description": "The Kingtmp.email API provides a service for generating temporary, secure, anonymous, and disposable email addresses to help users avoid spam and unwanted emails. This API allows users to create a temp mail that can be used to sign up for various online services while keeping their real mailbox clean and secure.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://kingtmp.email"
           }
         ],
+        "summary": "The Kingtmp.email API provides a service for generating temporary, secure, anonymous, and disposable email addresses to help users avoid spam and unwanted emails.",
         "title": "Temporary Email API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://kingtmp.email"
       },
       "option": {},
       "target": {
@@ -368,6 +368,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -418,6 +421,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

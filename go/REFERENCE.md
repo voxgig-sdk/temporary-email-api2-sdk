@@ -94,7 +94,8 @@ same parameters as `Direct()`.
 ## EmailGenerationEntity
 
 ```go
-email_generation := client.EmailGeneration(nil)
+emailGeneration := client.EmailGeneration(nil)
+fmt.Println(emailGeneration.GetName()) // "email_generation"
 ```
 
 ### Fields
@@ -113,6 +114,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.EmailGeneration(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -142,7 +147,8 @@ Return the entity name.
 ## EmailInboxEntity
 
 ```go
-email_inbox := client.EmailInbox(nil)
+emailInbox := client.EmailInbox(nil)
+fmt.Println(emailInbox.GetName()) // "email_inbox"
 ```
 
 ### Fields
@@ -160,6 +166,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.EmailInbox(nil).Load(map[string]any{"id": "email_inbox_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single emailgeneration — the value is the loaded record.
-    emailgeneration, err := client.EmailGeneration(nil).Load(nil, nil)
+    // Load a single emailGeneration — the value is the loaded record.
+    emailGeneration, err := client.EmailGeneration(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(emailgeneration)
+    fmt.Println(emailGeneration)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-emailgeneration, err := client.EmailGeneration(nil).Load(
+emailGeneration, err := client.EmailGeneration(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(emailgeneration) // the returned mock data
+fmt.Println(emailGeneration) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -246,9 +246,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    emailgeneration, err := client.EmailGeneration(nil).Load(nil, nil)
+    emailGeneration, err := client.EmailGeneration(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // emailgeneration is the returned record
+    // emailGeneration is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -285,7 +285,7 @@ API path: `/api/inbox/{email}`
 
 ### EmailGeneration
 
-Create an instance: `email_generation := client.EmailGeneration(nil)`
+Create an instance: `emailGeneration := client.EmailGeneration(nil)`
 
 #### Operations
 
@@ -304,17 +304,17 @@ Create an instance: `email_generation := client.EmailGeneration(nil)`
 #### Example: Load
 
 ```go
-email_generation, err := client.EmailGeneration(nil).Load(nil, nil)
+emailGeneration, err := client.EmailGeneration(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(email_generation) // the loaded record
+fmt.Println(emailGeneration) // the loaded record
 ```
 
 
 ### EmailInbox
 
-Create an instance: `email_inbox := client.EmailInbox(nil)`
+Create an instance: `emailInbox := client.EmailInbox(nil)`
 
 #### Operations
 
@@ -332,11 +332,11 @@ Create an instance: `email_inbox := client.EmailInbox(nil)`
 #### Example: Load
 
 ```go
-email_inbox, err := client.EmailInbox(nil).Load(map[string]any{"id": "email_inbox_id"}, nil)
+emailInbox, err := client.EmailInbox(nil).Load(map[string]any{"id": "email_inbox_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(email_inbox) // the loaded record
+fmt.Println(emailInbox) // the loaded record
 ```
 
 
