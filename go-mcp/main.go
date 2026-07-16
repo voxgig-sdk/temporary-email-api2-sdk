@@ -37,7 +37,20 @@ func main() {
 	addr := flag.String("addr", ":8080", "listen address for http transport")
 	flag.Parse()
 
-	client := sdk.NewTemporaryEmailApi2SDK(nil)
+	// Configure from the environment: TEMPORARY_EMAIL_API2_APIKEY carries the API key and
+	// TEMPORARY_EMAIL_API2_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("TEMPORARY_EMAIL_API2_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("TEMPORARY_EMAIL_API2_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewTemporaryEmailApi2SDK(opts)
 	server := mcp.NewServer(
 		&mcp.Implementation{
 			Name:    "temporary-email-api2",

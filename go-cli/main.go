@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewTemporaryEmailApi2SDK(nil)
+	// Configure from the environment: TEMPORARY_EMAIL_API2_APIKEY carries the API key and
+	// TEMPORARY_EMAIL_API2_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("TEMPORARY_EMAIL_API2_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("TEMPORARY_EMAIL_API2_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewTemporaryEmailApi2SDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
