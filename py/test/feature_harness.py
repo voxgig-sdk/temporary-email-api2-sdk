@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TemporaryEmailApi2Control
-from core.error import TemporaryEmailApi2Error
-from core.result import TemporaryEmailApi2Result
-from core.spec import TemporaryEmailApi2Spec
+from temporaryemailapi2_sdk.config import make_config
+from temporaryemailapi2_sdk.features import _make_feature
+from temporaryemailapi2_sdk.core.control import TemporaryEmailApi2Control
+from temporaryemailapi2_sdk.core.error import TemporaryEmailApi2Error
+from temporaryemailapi2_sdk.core.result import TemporaryEmailApi2Result
+from temporaryemailapi2_sdk.core.spec import TemporaryEmailApi2Spec
 
 
 # True when this SDK was generated with the named feature.

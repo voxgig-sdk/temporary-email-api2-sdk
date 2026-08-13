@@ -271,7 +271,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `"message"` |  |
+| `"messages"` |  |
 | `"total"` |  |
 
 Operations: Load.
@@ -326,7 +326,7 @@ Create an instance: `emailInbox := client.EmailInbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `[]any` |  |
+| `messages` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: Load

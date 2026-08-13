@@ -34,7 +34,7 @@ client = TemporaryEmailApi2SDK.new
 
 ```ruby
 begin
-  # load returns the bare EmailGeneration record (raises on error).
+  # load returns the ENTITY — call data_get for the EmailGeneration record (raises on error).
   emailgeneration = client.EmailGeneration.load()
   puts emailgeneration
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TemporaryEmailApi2SDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 emailgeneration = client.EmailGeneration.load()
 puts emailgeneration
 ```
@@ -247,7 +248,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `messages` |  |
 | `total` |  |
 
 Operations: Load.
@@ -280,7 +281,7 @@ Create an instance: `email_generation = client.EmailGeneration`
 #### Example: Load
 
 ```ruby
-# load returns the bare EmailGeneration record (raises on error).
+# load returns the ENTITY — call data_get for the EmailGeneration record (raises on error).
 email_generation = client.EmailGeneration.load()
 ```
 
@@ -299,13 +300,13 @@ Create an instance: `email_inbox = client.EmailInbox`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `Array` |  |
+| `messages` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare EmailInbox record (raises on error).
+# load returns the ENTITY — call data_get for the EmailInbox record (raises on error).
 email_inbox = client.EmailInbox.load({ "id" => "email_inbox_id" })
 ```
 

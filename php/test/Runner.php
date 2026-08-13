@@ -43,8 +43,8 @@ class TemporaryEmailApi2TestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('TEMPORARYEMAILAPI2_TEST_LIVE');
-        $override = self::getenv('TEMPORARYEMAILAPI2_TEST_OVERRIDE');
+        $live = self::getenv('TEMPORARY_EMAIL_API2_TEST_LIVE');
+        $override = self::getenv('TEMPORARY_EMAIL_API2_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class TemporaryEmailApi2TestRunner
             }
         }
 
-        $explain = self::getenv('TEMPORARYEMAILAPI2_TEST_EXPLAIN');
+        $explain = self::getenv('TEMPORARY_EMAIL_API2_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['TEMPORARYEMAILAPI2_TEST_EXPLAIN'] = $explain;
+            $m['TEMPORARY_EMAIL_API2_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

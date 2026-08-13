@@ -180,7 +180,7 @@ const email_inbox = client.EmailInbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `any[]` | No |  |
+| `messages` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations

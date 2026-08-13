@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = TemporaryEmailApi2SDK.test()
 
 const emailgeneration = await client.EmailGeneration().load()
-// emailgeneration is a bare entity populated with mock response data
+// emailgeneration is the entity, populated with mock response data
+// — call emailgeneration.data() for the record itself
 console.log(emailgeneration)
 ```
 
@@ -297,7 +298,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `messages` |  |
 | `total` |  |
 
 Operations: load.
@@ -348,7 +349,7 @@ Create an instance: `const email_inbox = client.EmailInbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `any[]` |  |
+| `messages` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: Load

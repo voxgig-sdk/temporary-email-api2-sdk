@@ -60,11 +60,11 @@ function email_generation_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["TEMPORARYEMAILAPI__TEST_EMAIL_GENERATION_ENTID"] = {},
-    ["TEMPORARYEMAILAPI__TEST_LIVE"] = "FALSE",
+    ["TEMPORARY_EMAIL_API2_TEST_EMAIL_GENERATION_ENTID"] = {},
+    ["TEMPORARY_EMAIL_API2_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["TEMPORARYEMAILAPI__TEST_LIVE"] == "TRUE"
+  local live = env["TEMPORARY_EMAIL_API2_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

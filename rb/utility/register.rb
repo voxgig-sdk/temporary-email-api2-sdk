@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TemporaryEmailApi2Utility.registrar = ->(u) {
   u.prepare_params = TemporaryEmailApi2Utilities::PrepareParams
   u.prepare_path = TemporaryEmailApi2Utilities::PreparePath
   u.prepare_query = TemporaryEmailApi2Utilities::PrepareQuery
+  u.graphql_body = TemporaryEmailApi2Utilities::GraphqlBody
+  u.graphql_errors = TemporaryEmailApi2Utilities::GraphqlErrors
   u.result_basic = TemporaryEmailApi2Utilities::ResultBasic
   u.result_body = TemporaryEmailApi2Utilities::ResultBody
   u.result_headers = TemporaryEmailApi2Utilities::ResultHeaders

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from temporaryemailapi2_sdk.utility.voxgig_struct import voxgig_struct as vs
 from temporaryemailapi2_sdk import TemporaryEmailApi2SDK
-from core import helpers
+from temporaryemailapi2_sdk.core import helpers
 from test import runner
 
 
@@ -63,11 +63,11 @@ def _email_inbox_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "TEMPORARYEMAILAPI__TEST_EMAIL_INBOX_ENTID": {},
-        "TEMPORARYEMAILAPI__TEST_LIVE": "FALSE",
+        "TEMPORARY_EMAIL_API2_TEST_EMAIL_INBOX_ENTID": {},
+        "TEMPORARY_EMAIL_API2_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("TEMPORARYEMAILAPI__TEST_LIVE") == "TRUE"
+    live = env.get("TEMPORARY_EMAIL_API2_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

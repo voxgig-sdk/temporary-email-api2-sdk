@@ -144,7 +144,7 @@ email_inbox = client.EmailInbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `list` | No |  |
+| `messages` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

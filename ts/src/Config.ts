@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'TemporaryEmailApi2',
   }
 
 
@@ -88,6 +88,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/generate",
               "parts": [
@@ -113,7 +114,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "message",
+          "name": "messages",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -148,6 +149,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/inbox/{email}",
               "parts": [

@@ -35,7 +35,7 @@ $client = new TemporaryEmailApi2SDK();
 
 ```php
 try {
-    // load() returns the bare EmailGeneration record (throws on error).
+    // load() returns the ENTITY — call data_get() for the EmailGeneration record (throws on error).
     $emailgeneration = $client->EmailGeneration()->load();
     print_r($emailgeneration);
 } catch (\Throwable $err) {
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TemporaryEmailApi2SDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $emailgeneration = $client->EmailGeneration()->load();
 print_r($emailgeneration);
 ```
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -257,7 +258,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `messages` |  |
 | `total` |  |
 
 Operations: Load.
@@ -290,7 +291,7 @@ Create an instance: `$email_generation = $client->EmailGeneration();`
 #### Example: Load
 
 ```php
-// load() returns the bare EmailGeneration record (throws on error).
+// load() returns the ENTITY — call data_get() for the EmailGeneration record (throws on error).
 $email_generation = $client->EmailGeneration()->load();
 ```
 
@@ -309,13 +310,13 @@ Create an instance: `$email_inbox = $client->EmailInbox();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `array` |  |
+| `messages` | `array` |  |
 | `total` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare EmailInbox record (throws on error).
+// load() returns the ENTITY — call data_get() for the EmailInbox record (throws on error).
 $email_inbox = $client->EmailInbox()->load(["id" => "email_inbox_id"]);
 ```
 

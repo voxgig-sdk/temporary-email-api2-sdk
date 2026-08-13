@@ -148,7 +148,7 @@ local email_inbox = client:EmailInbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `table` | No |  |
+| `messages` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations

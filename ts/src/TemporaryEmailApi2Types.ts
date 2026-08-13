@@ -18,7 +18,7 @@ export interface EmailGenerationLoadMatch {
 }
 
 export interface EmailInbox {
-  message?: any[]
+  messages?: any[]
   total?: number
 }
 

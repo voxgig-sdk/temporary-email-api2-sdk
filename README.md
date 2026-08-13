@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TemporaryEmailApi2SDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TemporaryEmailApi2SDK.test({
+  entity: {
+    email_generation: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const emailgeneration = await client.EmailGeneration().load()
-// emailgeneration is a bare EmailGeneration populated with mock data
+// emailgeneration is the EmailGeneration entity, populated with mock data
+// — call emailgeneration.data() for the record itself
 console.log(emailgeneration)
 ```
 
@@ -183,7 +192,7 @@ require_once 'temporaryemailapi2_sdk.php';
 $client = new TemporaryEmailApi2SDK();
 
 
-// Load a specific emailgeneration (returns the bare record; throws on error)
+// Load a specific emailgeneration (returns the ENTITY; call data_get() for the record; throws on error)
 $emailgeneration = $client->EmailGeneration()->load();
 print_r($emailgeneration);
 ```
@@ -211,7 +220,7 @@ require_relative "TemporaryEmailApi2_sdk"
 client = TemporaryEmailApi2SDK.new
 
 
-# Load a specific emailgeneration (returns the bare record; raises on error)
+# Load a specific emailgeneration (returns the ENTITY; call data_get for the record)
 emailgeneration = client.EmailGeneration.load()
 puts emailgeneration
 ```
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y/Kingtmpemail](https://github.com/l0v3m0n3y/Kingtmpemail)
 

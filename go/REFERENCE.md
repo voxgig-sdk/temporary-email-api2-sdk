@@ -155,7 +155,7 @@ fmt.Println(emailInbox.GetName()) // "email_inbox"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `[]any` | No |  |
+| `messages` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

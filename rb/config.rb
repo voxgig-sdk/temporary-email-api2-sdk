@@ -57,6 +57,7 @@ module TemporaryEmailApi2Config
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/generate",
                   "parts" => [
@@ -82,7 +83,7 @@ module TemporaryEmailApi2Config
           "fields" => [
             {
               "active" => true,
-              "name" => "message",
+              "name" => "messages",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -117,6 +118,7 @@ module TemporaryEmailApi2Config
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/inbox/{email}",
                   "parts" => [

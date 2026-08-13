@@ -238,7 +238,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `messages` |  |
 | `total` |  |
 
 Operations: Load.
@@ -289,7 +289,7 @@ Create an instance: `local email_inbox = client:EmailInbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `table` |  |
+| `messages` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: Load

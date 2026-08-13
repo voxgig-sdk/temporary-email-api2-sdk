@@ -150,7 +150,7 @@ $email_inbox = $client->EmailInbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `array` | No |  |
+| `messages` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

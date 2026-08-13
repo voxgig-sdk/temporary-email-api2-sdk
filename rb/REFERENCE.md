@@ -151,7 +151,7 @@ email_inbox = client.EmailInbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `Array` | No |  |
+| `messages` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations

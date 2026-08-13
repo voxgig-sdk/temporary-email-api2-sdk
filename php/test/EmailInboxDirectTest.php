@@ -73,11 +73,11 @@ function email_inbox_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "TEMPORARYEMAILAPI__TEST_EMAIL_INBOX_ENTID" => [],
-        "TEMPORARYEMAILAPI__TEST_LIVE" => "FALSE",
+        "TEMPORARY_EMAIL_API2_TEST_EMAIL_INBOX_ENTID" => [],
+        "TEMPORARY_EMAIL_API2_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["TEMPORARYEMAILAPI__TEST_LIVE"] === "TRUE";
+    $live = $env["TEMPORARY_EMAIL_API2_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

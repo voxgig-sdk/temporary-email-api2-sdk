@@ -17,7 +17,7 @@
 ---@field token? string
 
 ---@class EmailInbox
----@field message? table
+---@field messages? table
 ---@field total? number
 
 ---@class EmailInboxLoadMatch
