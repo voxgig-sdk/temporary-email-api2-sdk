@@ -15,7 +15,7 @@ require_relative "../TemporaryEmailApi2_sdk"
 module TemporaryEmailApi2FeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = TemporaryEmailApi2Config.make_config["feature"]
+    f = TemporaryEmailApi2Config.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
