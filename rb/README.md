@@ -236,9 +236,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `expires_at` |  |
-| `token` |  |
+| `email` | The generated temporary email address |
+| `expires_at` | Expiration timestamp of the temporary email |
+| `token` | Authentication token for accessing the mailbox |
 
 Operations: Load.
 
@@ -249,7 +249,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `messages` |  |
-| `total` |  |
+| `total` | Total number of messages |
 
 Operations: Load.
 
@@ -274,9 +274,9 @@ Create an instance: `email_generation = client.EmailGeneration`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `String` |  |
-| `expires_at` | `String` |  |
-| `token` | `String` |  |
+| `email` | `String` | The generated temporary email address |
+| `expires_at` | `String` | Expiration timestamp of the temporary email |
+| `token` | `String` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -301,7 +301,7 @@ Create an instance: `email_inbox = client.EmailInbox`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `Array` |  |
-| `total` | `Integer` |  |
+| `total` | `Integer` | Total number of messages |
 
 #### Example: Load
 

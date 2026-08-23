@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TemporaryEmailApi2",
+			"slug": "temporary-email-api2",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,14 +37,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "email",
+						"short": "The generated temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "expires_at",
+						"short": "Expiration timestamp of the temporary email",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "token",
+						"short": "Authentication token for accessing the mailbox",
 						"type": "`$STRING`",
 					},
 				},
@@ -81,6 +87,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "total",
+						"short": "Total number of messages",
 						"type": "`$INTEGER`",
 					},
 				},

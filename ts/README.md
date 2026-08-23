@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -286,9 +286,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `expires_at` |  |
-| `token` |  |
+| `email` | The generated temporary email address |
+| `expires_at` | Expiration timestamp of the temporary email |
+| `token` | Authentication token for accessing the mailbox |
 
 Operations: load.
 
@@ -299,7 +299,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `messages` |  |
-| `total` |  |
+| `total` | Total number of messages |
 
 Operations: load.
 
@@ -324,9 +324,9 @@ Create an instance: `const email_generation = client.EmailGeneration()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `expires_at` | `string` |  |
-| `token` | `string` |  |
+| `email` | `string` | The generated temporary email address |
+| `expires_at` | `string` | Expiration timestamp of the temporary email |
+| `token` | `string` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -350,7 +350,7 @@ Create an instance: `const email_inbox = client.EmailInbox()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `any[]` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of messages |
 
 #### Example: Load
 

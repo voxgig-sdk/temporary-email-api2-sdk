@@ -102,9 +102,9 @@ fmt.Println(emailGeneration.GetName()) // "email_generation"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | No |  |
-| `expires_at` | `string` | No |  |
-| `token` | `string` | No |  |
+| `email` | `string` | No | The generated temporary email address |
+| `expires_at` | `string` | No | Expiration timestamp of the temporary email |
+| `token` | `string` | No | Authentication token for accessing the mailbox |
 
 ### Operations
 
@@ -156,7 +156,7 @@ fmt.Println(emailInbox.GetName()) // "email_inbox"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `messages` | `[]any` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of messages |
 
 ### Operations
 

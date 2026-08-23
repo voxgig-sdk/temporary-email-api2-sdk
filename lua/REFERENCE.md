@@ -94,9 +94,9 @@ local email_generation = client:EmailGeneration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | No |  |
-| `expires_at` | `string` | No |  |
-| `token` | `string` | No |  |
+| `email` | `string` | No | The generated temporary email address |
+| `expires_at` | `string` | No | Expiration timestamp of the temporary email |
+| `token` | `string` | No | Authentication token for accessing the mailbox |
 
 ### Operations
 
@@ -149,7 +149,7 @@ local email_inbox = client:EmailInbox(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `messages` | `table` | No |  |
-| `total` | `number` | No |  |
+| `total` | `number` | No | Total number of messages |
 
 ### Operations
 

@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "TemporaryEmailApi2",
+            "slug": "temporary-email-api2",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,14 +54,17 @@ def make_config():
         "fields": [
           {
             "name": "email",
+            "short": "The generated temporary email address",
             "type": "`$STRING`",
           },
           {
             "name": "expires_at",
+            "short": "Expiration timestamp of the temporary email",
             "type": "`$STRING`",
           },
           {
             "name": "token",
+            "short": "Authentication token for accessing the mailbox",
             "type": "`$STRING`",
           },
         ],
@@ -98,6 +104,7 @@ def make_config():
           },
           {
             "name": "total",
+            "short": "Total number of messages",
             "type": "`$INTEGER`",
           },
         ],

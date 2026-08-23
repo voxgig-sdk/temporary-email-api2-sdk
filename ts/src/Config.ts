@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'TemporaryEmailApi2',
+        slug: "temporary-email-api2",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,14 +70,17 @@ class Config {
       "fields": [
         {
           "name": "email",
+          "short": "The generated temporary email address",
           "type": "`$STRING`"
         },
         {
           "name": "expires_at",
+          "short": "Expiration timestamp of the temporary email",
           "type": "`$STRING`"
         },
         {
           "name": "token",
+          "short": "Authentication token for accessing the mailbox",
           "type": "`$STRING`"
         }
       ],
@@ -106,6 +120,7 @@ class Config {
         },
         {
           "name": "total",
+          "short": "Total number of messages",
           "type": "`$INTEGER`"
         }
       ],

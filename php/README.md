@@ -246,9 +246,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `expires_at` |  |
-| `token` |  |
+| `email` | The generated temporary email address |
+| `expires_at` | Expiration timestamp of the temporary email |
+| `token` | Authentication token for accessing the mailbox |
 
 Operations: Load.
 
@@ -259,7 +259,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `messages` |  |
-| `total` |  |
+| `total` | Total number of messages |
 
 Operations: Load.
 
@@ -284,9 +284,9 @@ Create an instance: `$email_generation = $client->EmailGeneration();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `expires_at` | `string` |  |
-| `token` | `string` |  |
+| `email` | `string` | The generated temporary email address |
+| `expires_at` | `string` | Expiration timestamp of the temporary email |
+| `token` | `string` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -311,7 +311,7 @@ Create an instance: `$email_inbox = $client->EmailInbox();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `array` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of messages |
 
 #### Example: Load
 

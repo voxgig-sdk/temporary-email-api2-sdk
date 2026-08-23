@@ -242,9 +242,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `expires_at` |  |
-| `token` |  |
+| `email` | The generated temporary email address |
+| `expires_at` | Expiration timestamp of the temporary email |
+| `token` | Authentication token for accessing the mailbox |
 
 Operations: Load.
 
@@ -255,7 +255,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `messages` |  |
-| `total` |  |
+| `total` | Total number of messages |
 
 Operations: Load.
 
@@ -280,9 +280,9 @@ Create an instance: `email_generation = client.EmailGeneration()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `str` |  |
-| `expires_at` | `str` |  |
-| `token` | `str` |  |
+| `email` | `str` | The generated temporary email address |
+| `expires_at` | `str` | Expiration timestamp of the temporary email |
+| `token` | `str` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -306,7 +306,7 @@ Create an instance: `email_inbox = client.EmailInbox()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `list` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of messages |
 
 #### Example: Load
 

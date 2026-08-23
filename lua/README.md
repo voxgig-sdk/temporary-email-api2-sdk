@@ -226,9 +226,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `expires_at` |  |
-| `token` |  |
+| `email` | The generated temporary email address |
+| `expires_at` | Expiration timestamp of the temporary email |
+| `token` | Authentication token for accessing the mailbox |
 
 Operations: Load.
 
@@ -239,7 +239,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `messages` |  |
-| `total` |  |
+| `total` | Total number of messages |
 
 Operations: Load.
 
@@ -264,9 +264,9 @@ Create an instance: `local email_generation = client:EmailGeneration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `expires_at` | `string` |  |
-| `token` | `string` |  |
+| `email` | `string` | The generated temporary email address |
+| `expires_at` | `string` | Expiration timestamp of the temporary email |
+| `token` | `string` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -290,7 +290,7 @@ Create an instance: `local email_inbox = client:EmailInbox(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `table` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of messages |
 
 #### Example: Load
 

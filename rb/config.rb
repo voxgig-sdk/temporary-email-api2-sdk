@@ -19,6 +19,9 @@ module TemporaryEmailApi2Config
     {
       "main" => {
         "name" => "TemporaryEmailApi2",
+        "slug" => "temporary-email-api2",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,14 +45,17 @@ module TemporaryEmailApi2Config
           "fields" => [
             {
               "name" => "email",
+              "short" => "The generated temporary email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "expires_at",
+              "short" => "Expiration timestamp of the temporary email",
               "type" => "`$STRING`",
             },
             {
               "name" => "token",
+              "short" => "Authentication token for accessing the mailbox",
               "type" => "`$STRING`",
             },
           ],
@@ -89,6 +95,7 @@ module TemporaryEmailApi2Config
             },
             {
               "name" => "total",
+              "short" => "Total number of messages",
               "type" => "`$INTEGER`",
             },
           ],

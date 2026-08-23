@@ -6,7 +6,7 @@ The Golang SDK for the TemporaryEmailApi2 API — an entity-oriented client usin
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.EmailGeneration(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -259,9 +259,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"email"` |  |
-| `"expires_at"` |  |
-| `"token"` |  |
+| `"email"` | The generated temporary email address |
+| `"expires_at"` | Expiration timestamp of the temporary email |
+| `"token"` | Authentication token for accessing the mailbox |
 
 Operations: Load.
 
@@ -272,7 +272,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `"messages"` |  |
-| `"total"` |  |
+| `"total"` | Total number of messages |
 
 Operations: Load.
 
@@ -297,9 +297,9 @@ Create an instance: `emailGeneration := client.EmailGeneration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `expires_at` | `string` |  |
-| `token` | `string` |  |
+| `email` | `string` | The generated temporary email address |
+| `expires_at` | `string` | Expiration timestamp of the temporary email |
+| `token` | `string` | Authentication token for accessing the mailbox |
 
 #### Example: Load
 
@@ -327,7 +327,7 @@ Create an instance: `emailInbox := client.EmailInbox(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `messages` | `[]any` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of messages |
 
 #### Example: Load
 

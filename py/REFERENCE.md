@@ -91,9 +91,9 @@ email_generation = client.EmailGeneration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | No |  |
-| `expires_at` | `str` | No |  |
-| `token` | `str` | No |  |
+| `email` | `str` | No | The generated temporary email address |
+| `expires_at` | `str` | No | Expiration timestamp of the temporary email |
+| `token` | `str` | No | Authentication token for accessing the mailbox |
 
 ### Operations
 
@@ -145,7 +145,7 @@ email_inbox = client.EmailInbox()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `messages` | `list` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of messages |
 
 ### Operations
 
