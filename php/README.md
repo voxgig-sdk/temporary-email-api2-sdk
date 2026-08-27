@@ -258,6 +258,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `messages` |  |
 | `total` | Total number of messages |
 
@@ -310,6 +311,7 @@ Create an instance: `$email_inbox = $client->EmailInbox();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `messages` | `array` |  |
 | `total` | `int` | Total number of messages |
 

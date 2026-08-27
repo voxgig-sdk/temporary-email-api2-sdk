@@ -44,12 +44,16 @@ EmailGenerationLoadMatch = Struct.new(
 
 # EmailInbox entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] messages
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
 #   @return [Integer, nil]
 EmailInbox = Struct.new(
+  :id,
   :messages,
   :total,
   keyword_init: true

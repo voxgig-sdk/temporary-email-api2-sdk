@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -114,6 +115,10 @@ class Config {
     },
     "email_inbox": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "messages",
           "type": "`$ARRAY`"

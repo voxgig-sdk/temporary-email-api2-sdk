@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -98,6 +99,10 @@ def make_config():
       },
       "email_inbox": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "messages",
             "type": "`$ARRAY`",

@@ -29,6 +29,7 @@ class EmailGenerationLoadMatch(TypedDict, total=False):
 
 
 class EmailInbox(TypedDict, total=False):
+    id: str
     messages: list
     total: int
 

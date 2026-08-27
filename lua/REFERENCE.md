@@ -148,6 +148,7 @@ local email_inbox = client:EmailInbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `messages` | `table` | No |  |
 | `total` | `number` | No | Total number of messages |
 

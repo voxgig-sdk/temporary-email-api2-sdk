@@ -31,6 +31,7 @@ class EmailGenerationLoadMatch
 /** EmailInbox entity data model. */
 class EmailInbox
 {
+    public ?string $id = null;
     public ?array $messages = null;
     public ?int $total = null;
 }

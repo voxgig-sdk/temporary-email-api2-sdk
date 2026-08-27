@@ -17,6 +17,7 @@
 ---@field token? string
 
 ---@class EmailInbox
+---@field id? string
 ---@field messages? table
 ---@field total? number
 

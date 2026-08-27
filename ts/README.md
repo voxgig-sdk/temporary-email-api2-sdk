@@ -298,6 +298,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `messages` |  |
 | `total` | Total number of messages |
 
@@ -349,6 +350,7 @@ Create an instance: `const email_inbox = client.EmailInbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `messages` | `any[]` |  |
 | `total` | `number` | Total number of messages |
 

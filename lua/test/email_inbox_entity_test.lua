@@ -44,10 +44,14 @@ describe("EmailInboxEntity", function()
 
     -- LOAD
     local email_inbox_ref01_ent = client:EmailInbox(nil)
-    local email_inbox_ref01_match_dt0 = {}
+    local email_inbox_ref01_match_dt0 = {
+      id = email_inbox_ref01_data["id"],
+    }
     local email_inbox_ref01_data_dt0_loaded, err = email_inbox_ref01_ent:load(email_inbox_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(email_inbox_ref01_data_dt0_loaded)
+    local email_inbox_ref01_data_dt0_load_result = helpers.to_map(type(email_inbox_ref01_data_dt0_loaded) == 'table' and email_inbox_ref01_data_dt0_loaded.data_get and email_inbox_ref01_data_dt0_loaded:data_get() or email_inbox_ref01_data_dt0_loaded)
+    assert.is_not_nil(email_inbox_ref01_data_dt0_load_result)
+    assert.are.equal(email_inbox_ref01_data_dt0_load_result["id"], email_inbox_ref01_data["id"])
 
   end)
 end)

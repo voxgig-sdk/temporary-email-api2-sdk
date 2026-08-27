@@ -59,9 +59,12 @@ describe('EmailInboxEntity', async () => {
 
     let email_inbox_ref01_data = Object.values(setup.data.existing.email_inbox)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const email_inbox_ref01_ent = client.EmailInbox()
+    const email_inbox_ref01_match_dt0: any = {}
+    email_inbox_ref01_match_dt0.id = email_inbox_ref01_data.id
+    const email_inbox_ref01_data_dt0 = (await email_inbox_ref01_ent.load(email_inbox_ref01_match_dt0)).data()
+    assert(email_inbox_ref01_data_dt0.id === email_inbox_ref01_data.id)
 
 
   })

@@ -42,6 +42,7 @@ class TemporaryEmailApi2Config
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -103,6 +104,10 @@ class TemporaryEmailApi2Config
         ],
         'email_inbox' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'messages',
               'type' => '`$ARRAY`',

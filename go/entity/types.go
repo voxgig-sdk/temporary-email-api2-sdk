@@ -28,6 +28,7 @@ type EmailGenerationLoadMatch struct {
 
 // EmailInbox is the typed data model for the email_inbox entity.
 type EmailInbox struct {
+	Id *string `json:"id,omitempty"`
 	Messages *[]any `json:"messages,omitempty"`
 	Total *int `json:"total,omitempty"`
 }

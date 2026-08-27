@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -77,6 +78,10 @@ local function make_config()
       },
       ["email_inbox"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "messages",
             ["type"] = "`$ARRAY`",

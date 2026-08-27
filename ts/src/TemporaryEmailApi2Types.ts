@@ -18,6 +18,7 @@ export interface EmailGenerationLoadMatch {
 }
 
 export interface EmailInbox {
+  id?: string
   messages?: any[]
   total?: number
 }

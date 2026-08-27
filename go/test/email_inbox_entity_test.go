@@ -61,13 +61,19 @@ func TestEmailInboxEntity(t *testing.T) {
 
 		// LOAD
 		emailInboxRef01Ent := client.EmailInbox(nil)
-		emailInboxRef01MatchDt0 := map[string]any{}
+		emailInboxRef01MatchDt0 := map[string]any{
+			"id": emailInboxRef01Data["id"],
+		}
 		emailInboxRef01DataDt0Loaded, err := emailInboxRef01Ent.Load(emailInboxRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if emailInboxRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		emailInboxRef01DataDt0LoadResult := core.ToMapAny(entityData(emailInboxRef01DataDt0Loaded))
+		if emailInboxRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if emailInboxRef01DataDt0LoadResult["id"] != emailInboxRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

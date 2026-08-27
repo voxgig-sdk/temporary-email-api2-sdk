@@ -238,6 +238,7 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `messages` |  |
 | `total` | Total number of messages |
 
@@ -289,6 +290,7 @@ Create an instance: `local email_inbox = client:EmailInbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `messages` | `table` |  |
 | `total` | `number` | Total number of messages |
 

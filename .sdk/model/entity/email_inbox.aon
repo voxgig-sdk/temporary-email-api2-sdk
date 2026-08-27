@@ -6,6 +6,11 @@ main: kit: entity: email_inbox: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "messages"
       req: false
       type: "`$ARRAY`"
@@ -17,6 +22,11 @@ main: kit: entity: email_inbox: {
       type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "email_inbox"
   op: {

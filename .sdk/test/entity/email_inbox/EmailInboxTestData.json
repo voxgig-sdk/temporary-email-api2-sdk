@@ -2,19 +2,19 @@
   "existing": {
     "email_inbox": {
       "EMAIL_INBOX00": {
+        "id": "EMAIL_INBOX00",
         "messages": [],
-        "total": "s15",
-        "id": "EMAIL_INBOX00"
+        "total": "s20"
       },
       "EMAIL_INBOX01": {
+        "id": "EMAIL_INBOX01",
         "messages": [],
-        "total": "s29",
-        "id": "EMAIL_INBOX01"
+        "total": "s3e"
       },
       "EMAIL_INBOX02": {
+        "id": "EMAIL_INBOX02",
         "messages": [],
-        "total": "s3d",
-        "id": "EMAIL_INBOX02"
+        "total": "s5c"
       }
     }
   },
@@ -22,7 +22,7 @@
     "email_inbox": {
       "email_inbox_ref01": {
         "messages": [],
-        "total": "s51"
+        "total": "s7a"
       }
     }
   }
