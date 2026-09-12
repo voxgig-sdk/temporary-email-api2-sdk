@@ -45,11 +45,13 @@ module TemporaryEmailApi2Config
         "email_generation" => {
           "fields" => [
             {
+              "format" => "email",
               "name" => "email",
               "short" => "The generated temporary email address",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "expires_at",
               "short" => "Expiration timestamp of the temporary email",
               "type" => "`$STRING`",
@@ -71,15 +73,23 @@ module TemporaryEmailApi2Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/generate",
-                  "parts" => [
-                    "api",
-                    "generate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "generate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "generate",
+                  ],
                 },
               ],
             },
@@ -104,6 +114,10 @@ module TemporaryEmailApi2Config
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "email_inbox",
           "op" => {
             "load" => {
@@ -126,16 +140,22 @@ module TemporaryEmailApi2Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/inbox/{email}",
-                  "parts" => [
-                    "api",
-                    "inbox",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "email" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "inbox",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -145,6 +165,11 @@ module TemporaryEmailApi2Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "inbox",
+                    "{id}",
+                  ],
                 },
               ],
             },

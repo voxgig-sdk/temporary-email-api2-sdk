@@ -1,6 +1,14 @@
 # TemporaryEmailApi2 SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -54,11 +62,13 @@ def make_config():
       "email_generation": {
         "fields": [
           {
+            "format": "email",
             "name": "email",
             "short": "The generated temporary email address",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "expires_at",
             "short": "Expiration timestamp of the temporary email",
             "type": "`$STRING`",
@@ -80,15 +90,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/generate",
-                "parts": [
-                  "api",
-                  "generate",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "generate",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "generate",
+                ],
               },
             ],
           },
@@ -113,6 +131,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "email_inbox",
         "op": {
           "load": {
@@ -135,16 +157,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/inbox/{email}",
-                "parts": [
-                  "api",
-                  "inbox",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "email": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "inbox",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -154,6 +182,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "inbox",
+                  "{id}",
+                ],
               },
             ],
           },

@@ -6,12 +6,14 @@ main: kit: entity: email_generation: {
 
   fields: [
     {
+      format: "email"
       name: "email"
       req: false
       short: "The generated temporary email address"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expires_at"
       req: false
       short: "Expiration timestamp of the temporary email"
@@ -33,9 +35,13 @@ main: kit: entity: email_generation: {
         {
           method: "GET"
           orig: "/api/generate"
-          parts: [
-            "api"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

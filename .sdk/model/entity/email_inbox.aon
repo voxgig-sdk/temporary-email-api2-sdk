@@ -48,16 +48,22 @@ main: kit: entity: email_inbox: {
           }
           method: "GET"
           orig: "/api/inbox/{email}"
-          parts: [
-            "api"
-            "inbox"
-            "{id}"
-          ]
           rename: {
             param: {
               email: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "inbox"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

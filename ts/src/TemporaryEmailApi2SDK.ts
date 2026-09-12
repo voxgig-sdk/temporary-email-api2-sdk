@@ -18,6 +18,7 @@ import { Utility } from './utility/Utility'
 import { BaseFeature } from './feature/base/BaseFeature'
 
 
+
 const stdutil = new Utility()
 
 
@@ -27,6 +28,7 @@ class TemporaryEmailApi2SDK {
   _utility = new Utility()
   _features: Feature[]
   _rootctx: Context
+  
 
   constructor(options?: any) {
 
@@ -99,6 +101,8 @@ class TemporaryEmailApi2SDK {
     return this._utility.struct.clone(this._utility)
   }
 
+  
+
 
   async prepare(fetchargs?: any) {
     const utility = this._utility
@@ -144,6 +148,8 @@ class TemporaryEmailApi2SDK {
         spec.headers[key] = uheaders[key]
       }
     }
+
+    
 
     // Apply SDK auth (apikey, auth prefix, etc.)
     const authResult = prepareAuth(ctx)
@@ -359,6 +365,7 @@ const SDK = TemporaryEmailApi2SDK
 export {
   stdutil,
   config,
+  
 
   BaseFeature,
   TemporaryEmailApi2EntityBase,
