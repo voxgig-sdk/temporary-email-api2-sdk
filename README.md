@@ -105,7 +105,7 @@ local result, err = client:EmailGeneration():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/temporary-email-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases) |
+| TypeScript | `@voxgig-sdk/temporary-email-api2-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases) |
 | Python | `voxgig-sdk-temporary-email-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases) |
 | PHP | `voxgig-sdk/temporary-email-api2` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-api2-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/temporary-email-api2-sdk/go` | `go get github.com/voxgig-sdk/temporary-email-api2-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:EmailGeneration():load()
 ### TypeScript
 
 ```ts
-import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
+import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2-sdk'
 
 const client = new TemporaryEmailApi2SDK()
 

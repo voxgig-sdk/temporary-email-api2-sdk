@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
+import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2-sdk'
 
 const client = new TemporaryEmailApi2SDK()
 ```
@@ -443,7 +443,7 @@ temporary-email-api2/
 Import the SDK from the package root:
 
 ```ts
-import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2'
+import { TemporaryEmailApi2SDK } from '@voxgig-sdk/temporary-email-api2-sdk'
 ```
 
 ### Entity state
