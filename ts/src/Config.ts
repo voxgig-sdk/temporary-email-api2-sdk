@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      email_generation: {
-      },
-
-      email_inbox: {
-      },
-
+        email_generation: {
+        },
+  
+        email_inbox: {
+        },
+  
     }
   }
 
