@@ -1,0 +1,65 @@
+# Entity: email_generation
+
+main: kit: entity: email_generation: {
+
+  alias: field: {}
+
+  fields: {
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The generated temporary email address"
+      t: "`$STRING`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "Expiration timestamp of the temporary email"
+      t: "`$STRING`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "Authentication token for accessing the mailbox"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "email_generation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

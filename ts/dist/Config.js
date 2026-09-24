@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,21 +107,24 @@ class Config {
         "email_generation": {
             "fields": [
                 {
-                    "format": "email",
                     "name": "email",
+                    "title": "Email",
+                    "type": "`$STRING`",
                     "short": "The generated temporary email address",
-                    "type": "`$STRING`"
+                    "format": "email"
                 },
                 {
-                    "format": "date-time",
                     "name": "expires_at",
+                    "title": "Expires At",
+                    "type": "`$STRING`",
                     "short": "Expiration timestamp of the temporary email",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "token",
-                    "short": "Authentication token for accessing the mailbox",
-                    "type": "`$STRING`"
+                    "title": "Token",
+                    "type": "`$STRING`",
+                    "short": "Authentication token for accessing the mailbox"
                 }
             ],
             "name": "email_generation",
@@ -138,7 +134,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/generate",
@@ -150,15 +145,17 @@ class Config {
                                     "lit": "generate"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "api",
+                                "generate"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "generate"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -171,16 +168,19 @@ class Config {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "messages",
+                    "title": "Messages",
                     "type": "`$ARRAY`"
                 },
                 {
                     "name": "total",
-                    "short": "Total number of messages",
-                    "type": "`$INTEGER`"
+                    "title": "Total",
+                    "type": "`$INTEGER`",
+                    "short": "Total number of messages"
                 }
             ],
             "id": {
@@ -194,26 +194,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "temp_user_12345@kingtmp.email",
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "email",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/api/inbox/{email}",
-                            "rename": {
-                                "param": {
-                                    "email": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "api"
@@ -225,20 +208,37 @@ class Config {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "api",
+                                "inbox",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "email": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "api",
-                                "inbox",
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "email",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "temp_user_12345@kingtmp.email"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }

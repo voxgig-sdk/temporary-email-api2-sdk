@@ -87,21 +87,24 @@ local function make_config()
       ["email_generation"] = {
         ["fields"] = {
           {
-            ["format"] = "email",
             ["name"] = "email",
-            ["short"] = "The generated temporary email address",
+            ["title"] = "Email",
             ["type"] = "`$STRING`",
+            ["short"] = "The generated temporary email address",
+            ["format"] = "email",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "expires_at",
-            ["short"] = "Expiration timestamp of the temporary email",
+            ["title"] = "Expires At",
             ["type"] = "`$STRING`",
+            ["short"] = "Expiration timestamp of the temporary email",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "token",
-            ["short"] = "Authentication token for accessing the mailbox",
+            ["title"] = "Token",
             ["type"] = "`$STRING`",
+            ["short"] = "Authentication token for accessing the mailbox",
           },
         },
         ["name"] = "email_generation",
@@ -111,7 +114,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/generate",
@@ -123,15 +125,17 @@ local function make_config()
                     ["lit"] = "generate",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "generate",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -144,16 +148,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "messages",
+            ["title"] = "Messages",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "total",
-            ["short"] = "Total number of messages",
+            ["title"] = "Total",
             ["type"] = "`$INTEGER`",
+            ["short"] = "Total number of messages",
           },
         },
         ["id"] = {
@@ -167,26 +174,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "temp_user_12345@kingtmp.email",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/inbox/{email}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["email"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -198,19 +188,36 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "api",
+                  "inbox",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["email"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "api",
-                  "inbox",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "temp_user_12345@kingtmp.email",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },

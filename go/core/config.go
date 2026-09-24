@@ -91,21 +91,24 @@ func MakeConfig() map[string]any {
 			"email_generation": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "email",
-						"short": "The generated temporary email address",
+						"title": "Email",
 						"type": "`$STRING`",
+						"short": "The generated temporary email address",
+						"format": "email",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "expires_at",
-						"short": "Expiration timestamp of the temporary email",
+						"title": "Expires At",
 						"type": "`$STRING`",
+						"short": "Expiration timestamp of the temporary email",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "token",
-						"short": "Authentication token for accessing the mailbox",
+						"title": "Token",
 						"type": "`$STRING`",
+						"short": "Authentication token for accessing the mailbox",
 					},
 				},
 				"name": "email_generation",
@@ -115,7 +118,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/generate",
@@ -127,15 +129,17 @@ func MakeConfig() map[string]any {
 										"lit": "generate",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"api",
 									"generate",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -148,16 +152,19 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "messages",
+						"title": "Messages",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "total",
-						"short": "Total number of messages",
+						"title": "Total",
 						"type": "`$INTEGER`",
+						"short": "Total number of messages",
 					},
 				},
 				"id": map[string]any{
@@ -171,26 +178,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "temp_user_12345@kingtmp.email",
-											"kind": "param",
-											"name": "id",
-											"orig": "email",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/inbox/{email}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"email": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -202,19 +192,36 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"api",
+									"inbox",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"email": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api",
-									"inbox",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "email",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "temp_user_12345@kingtmp.email",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

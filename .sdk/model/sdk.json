@@ -24,37 +24,106 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "email_generation": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "email",
-              "name": "email",
-              "req": false,
-              "short": "The generated temporary email address",
-              "type": "`$STRING`"
+          "fields": {
+            "email": {
+              "a": true,
+              "fo": "email",
+              "h": "Email",
+              "n": "email",
+              "r": false,
+              "sh": "The generated temporary email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "expires_at",
-              "req": false,
-              "short": "Expiration timestamp of the temporary email",
-              "type": "`$STRING`"
+            "expires_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Expires At",
+              "n": "expires_at",
+              "r": false,
+              "sh": "Expiration timestamp of the temporary email",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "token",
-              "req": false,
-              "short": "Authentication token for accessing the mailbox",
-              "type": "`$STRING`"
+            "token": {
+              "a": true,
+              "h": "Token",
+              "n": "token",
+              "r": false,
+              "sh": "Authentication token for accessing the mailbox",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "email_generation",
           "op": {
             "load": {
@@ -62,18 +131,19 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/generate",
-                    "json": "{\"operationId\":\"generateEmail\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"success\":{\"summary\":\"Successful generation\",\"value\":{\"email\":\"temp_user_12345@kingtmp.email\",\"expires_at\":\"2024-01-01T23:59:59Z\",\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"}}},\"schema\":{\"properties\":{\"email\":{\"description\":\"The generated temporary email address\",\"example\":\"random123@kingtmp.email\",\"format\":\"email\",\"type\":\"string\"},\"expires_at\":{\"description\":\"Expiration timestamp of the temporary email\",\"example\":\"2024-01-01T12:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"token\":{\"description\":\"Authentication token for accessing the mailbox\",\"example\":\"abc123def456\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated temporary email address\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The provided email address is invalid\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid request\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The provided email address is invalid\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid request\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too many requests - Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The provided email address is invalid\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid request\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/generate",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/generate",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -81,8 +151,7 @@
                       "lit": "generate"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -99,27 +168,30 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "messages",
-              "req": false,
-              "type": "`$ARRAY`"
+            "messages": {
+              "a": true,
+              "h": "Messages",
+              "n": "messages",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "total",
-              "req": false,
-              "short": "Total number of messages",
-              "type": "`$INTEGER`"
+            "total": {
+              "a": true,
+              "h": "Total",
+              "n": "total",
+              "r": false,
+              "sh": "Total number of messages",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -131,35 +203,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/inbox/{email}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "temp_user_12345@kingtmp.email",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "email",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "temp_user_12345@kingtmp.email",
+                        "k": "param",
+                        "n": "id",
+                        "or": "email",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/inbox/{email}",
-                    "json": "{\"operationId\":\"getInbox\",\"parameters\":[{\"description\":\"The temporary email address to check\",\"example\":\"temp_user_12345@kingtmp.email\",\"in\":\"path\",\"name\":\"email\",\"required\":true,\"schema\":{\"format\":\"email\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"messages\":{\"items\":{\"properties\":{\"attachments\":{\"items\":{\"properties\":{\"content_type\":{\"example\":\"application/pdf\",\"type\":\"string\"},\"filename\":{\"example\":\"document.pdf\",\"type\":\"string\"},\"size\":{\"description\":\"File size in bytes\",\"example\":12345,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"body\":{\"description\":\"Email body content\",\"example\":\"Thank you for signing up...\",\"type\":\"string\"},\"from\":{\"description\":\"Sender's email address\",\"example\":\"sender@example.com\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"Unique message identifier\",\"example\":\"msg_123456\",\"type\":\"string\"},\"received_at\":{\"description\":\"Timestamp when the message was received\",\"example\":\"2024-01-01T10:30:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"subject\":{\"description\":\"Email subject line\",\"example\":\"Welcome to our service\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"description\":\"Total number of messages\",\"example\":5,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved inbox messages\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The provided email address is invalid\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid request\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Email address not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/inbox/{email}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/inbox/{email}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "email": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -170,12 +246,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -604,17 +675,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "email_generation_ref01",
                 "srcdatavar": "email_generation_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -634,19 +705,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "email_inbox_ref01",
                 "srcdatavar": "email_inbox_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "email_inbox01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
