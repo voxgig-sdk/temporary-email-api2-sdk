@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 TemporaryEmailApi2Utility.registrar = ->(u) {
   u.clean = TemporaryEmailApi2Utilities::Clean
+  u.clean_add = TemporaryEmailApi2Utilities::CleanAdd
+  u.clean_explain = TemporaryEmailApi2Utilities::CleanExplain
   u.done = TemporaryEmailApi2Utilities::Done
   u.make_error = TemporaryEmailApi2Utilities::MakeError
   u.feature_add = TemporaryEmailApi2Utilities::FeatureAdd

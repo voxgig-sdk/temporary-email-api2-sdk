@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TemporaryEmailApi2Utility::setRegistrar(function (TemporaryEmailApi2Utility $u): void {
     $u->clean = [TemporaryEmailApi2Clean::class, 'call'];
+    $u->clean_add = [TemporaryEmailApi2Clean::class, 'add'];
+    $u->clean_explain = [TemporaryEmailApi2Done::class, 'clean_explain'];
     $u->done = [TemporaryEmailApi2Done::class, 'call'];
     $u->make_error = [TemporaryEmailApi2MakeError::class, 'call'];
     $u->feature_add = [TemporaryEmailApi2FeatureAdd::class, 'call'];
