@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Authentication token for accessing the mailbox",
+      "Expiration timestamp of the temporary email",
+      "Production server",
+      "Successfully generated temporary email address",
+      "Successfully retrieved inbox messages",
+      "The Kingtmp.email API provides a service for generating temporary, secure, anonymous, and disposable email addresses to help users avoid spam and unwanted emails. This API allows users to create a temp mail that can be used to sign up for various online services while keeping their real mailbox clean and secure.",
+      "The generated temporary email address",
+      "Total number of messages",
+      "Unique message identifier"
+    ]
+  }
 }

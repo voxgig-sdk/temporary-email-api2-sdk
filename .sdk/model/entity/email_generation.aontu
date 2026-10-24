@@ -43,6 +43,10 @@ main: kit: entity: email_generation: {
           }
           m: "GET"
           o: "/api/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

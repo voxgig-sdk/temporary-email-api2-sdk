@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { TemporaryEmailApi2SDK, BaseFeature, stdutil } from '../../..'
+import { TemporaryEmailApi2SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('EmailGenerationEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TemporaryEmailApi2SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.EmailGeneration().load({"email":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TEMPORARY_EMAIL_API2_TEST_LIVE
@@ -51,7 +63,7 @@ describe('EmailGenerationEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"email":{"a":true,"fo":"email","h":"Email","n":"email","r":false,"sh":"The generated temporary email address","t":"`$STRING`","key$":"email","index$":0},"expires_at":{"a":true,"fo":"date-time","h":"Expires At","n":"expires_at","r":false,"sh":"Expiration timestamp of the temporary email","t":"`$STRING`","key$":"expires_at","index$":1},"token":{"a":true,"h":"Token","n":"token","r":false,"sh":"Authentication token for accessing the mailbox","t":"`$STRING`","key$":"token","index$":2}},"name":"email_generation","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/generate","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/generate","q":{},"r":{},"s":[{"lit":"api"},{"lit":"generate"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"email_generation","name__orig":"email_generation","Name":"EmailGeneration","name_":"email_generation","name-":"email-generation","NAME":"EMAIL_GENERATION","index$":0}, {"active":true,"entity":"email_generation","key$":"BasicEmailGenerationFlow","kind":"basic","name":"BasicEmailGenerationFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"email_generation_ref01","srcdatavar":"email_generation_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-email_generation_ref01"}}],"index$":0}]}, 'EmailGeneration', {"GET /api/generate":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"email":{"a":true,"fo":"email","h":"Email","n":"email","r":false,"sh":"The generated temporary email address","t":"`$STRING`","key$":"email","index$":0},"expires_at":{"a":true,"fo":"date-time","h":"Expires At","n":"expires_at","r":false,"sh":"Expiration timestamp of the temporary email","t":"`$STRING`","key$":"expires_at","index$":1},"token":{"a":true,"h":"Token","n":"token","r":false,"sh":"Authentication token for accessing the mailbox","t":"`$STRING`","key$":"token","index$":2}},"name":"email_generation","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/generate","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/generate","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"generate"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"email_generation","name__orig":"email_generation","Name":"EmailGeneration","name_":"email_generation","name-":"email-generation","NAME":"EMAIL_GENERATION","index$":0}, {"active":true,"entity":"email_generation","key$":"BasicEmailGenerationFlow","kind":"basic","name":"BasicEmailGenerationFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"email_generation_ref01","srcdatavar":"email_generation_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-email_generation_ref01"}}],"index$":0}]}, 'EmailGeneration', {"GET /api/generate":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('EmailGenerationEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

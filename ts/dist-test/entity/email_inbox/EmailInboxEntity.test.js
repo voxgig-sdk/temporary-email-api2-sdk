@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.EmailInbox();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.TemporaryEmailApi2SDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.EmailInbox().load({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.TEMPORARY_EMAIL_API2_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 }, "messages": { "a": true, "h": "Messages", "n": "messages", "r": false, "t": "`$ARRAY`", "key$": "messages", "index$": 1 }, "total": { "a": true, "h": "Total", "n": "total", "r": false, "sh": "Total number of messages", "t": "`$INTEGER`", "key$": "total", "index$": 2 } }, "id": { "field": "id", "name": "id" }, "name": "email_inbox", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/inbox/{email}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "temp_user_12345@kingtmp.email", "k": "param", "n": "id", "or": "email", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/api/inbox/{email}", "q": { "exist": ["id"] }, "r": { "param": { "email": "id" } }, "s": [{ "lit": "api" }, { "lit": "inbox" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "email_inbox", "name__orig": "email_inbox", "Name": "EmailInbox", "name_": "email_inbox", "name-": "email-inbox", "NAME": "EMAIL_INBOX", "index$": 1 }, { "active": true, "entity": "email_inbox", "key$": "BasicEmailInboxFlow", "kind": "basic", "name": "BasicEmailInboxFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "email_inbox_ref01", "srcdatavar": "email_inbox_ref01_data", "suffix": "_dt0" }, "m": { "id": "email_inbox01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-email_inbox_ref01" } }], "index$": 0 }] }, 'EmailInbox', { "GET /api/inbox/{email}": { "protocol": "http", "parameters": [{ "name": "email", "in": "path", "required": true, "description": "The temporary email address to check", "schema": { "type": "string", "format": "email" }, "example": "temp_user_12345@kingtmp.email", "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 }, "messages": { "a": true, "h": "Messages", "n": "messages", "r": false, "t": "`$ARRAY`", "key$": "messages", "index$": 1 }, "total": { "a": true, "h": "Total", "n": "total", "r": false, "sh": "Total number of messages", "t": "`$INTEGER`", "key$": "total", "index$": 2 } }, "id": { "field": "id", "name": "id" }, "name": "email_inbox", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/inbox/{email}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "temp_user_12345@kingtmp.email", "k": "param", "n": "id", "or": "email", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/api/inbox/{email}", "q": { "exist": ["id"] }, "r": { "param": { "email": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "inbox" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "email_inbox", "name__orig": "email_inbox", "Name": "EmailInbox", "name_": "email_inbox", "name-": "email-inbox", "NAME": "EMAIL_INBOX", "index$": 1 }, { "active": true, "entity": "email_inbox", "key$": "BasicEmailInboxFlow", "kind": "basic", "name": "BasicEmailInboxFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "email_inbox_ref01", "srcdatavar": "email_inbox_ref01_data", "suffix": "_dt0" }, "m": { "id": "email_inbox01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-email_inbox_ref01" } }], "index$": 0 }] }, 'EmailInbox', { "GET /api/inbox/{email}": { "protocol": "http", "parameters": [{ "name": "email", "in": "path", "required": true, "description": "The temporary email address to check", "schema": { "type": "string", "format": "email" }, "example": "temp_user_12345@kingtmp.email", "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -77,6 +85,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(email_inbox_ref01_data_dt0.id === email_inbox_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

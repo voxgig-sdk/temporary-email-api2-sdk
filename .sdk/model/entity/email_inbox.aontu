@@ -66,6 +66,10 @@ main: kit: entity: email_inbox: {
               email: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

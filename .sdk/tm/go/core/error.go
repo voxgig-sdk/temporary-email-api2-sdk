@@ -12,6 +12,8 @@ type TemporaryEmailApi2Error struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewTemporaryEmailApi2Error(code string, msg string, ctx *Context) *TemporaryEmailApi2Error {
@@ -21,7 +23,12 @@ func NewTemporaryEmailApi2Error(code string, msg string, ctx *Context) *Temporar
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *TemporaryEmailApi2Error) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *TemporaryEmailApi2Error) Error() string {
@@ -35,6 +42,7 @@ func (e *TemporaryEmailApi2Error) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}
